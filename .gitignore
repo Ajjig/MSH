@@ -1,0 +1,6 @@
+*.out
+minishell
+*.o
+.vscode
+minishell.dSYM
+.DS_Store
