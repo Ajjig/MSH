@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void	__exec__(t_command *command)
+void	__exec__(t_command *command, t_envlist *lst)
 {
 	char	*output;
 
@@ -10,4 +10,10 @@ void	__exec__(t_command *command)
 		output = __cd__(command);
 	else if (ft_strcmp(command -> program, _PWD) == 0)
 		output = __cwd__(command);
+	else if (ft_strcmp(command -> program, _ECHO) == 0)
+		output = __echo(command);
+	else if (ft_strcmp(command -> program, _ENV) == 0)
+		output = __env(lst);
+	else if (ft_strcmp(command -> program, _EXPORT) == 0)
+		output = __export(lst, command);
 }

@@ -16,7 +16,11 @@ SRCS =	minishell.c \
 		command_init.c \
 		exec.c \
 		cd.c \
-		cwd.c
+		cwd.c \
+		__echo.c \
+		__env.c \
+		list_lib.c \
+		__export.c
 
 OBJS =	${SRC:.c=.o}
 
@@ -33,7 +37,7 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(SRCS) $(LIBNAME) -o $(NAME)
 
 libft:
-	@make bonus -C LIBFT/
+	@make -C LIBFT/
 	@echo "LIBFT compiled successfully"
 
 run: all

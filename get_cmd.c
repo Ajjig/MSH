@@ -86,7 +86,7 @@ char	*args_joiner(char *args, char *new)
 	char	*space;
 	if (args == NULL)
 		return (ft_strdup(new));
-	space = ft_strjoin(args, "\n");
+	space = ft_strjoin(args, " ");
 	joined = ft_strjoin(space, new);
 	free(args);
 	free(space);

@@ -1,4 +1,5 @@
 #include "minishell.h"
+
 char	*__cd__(t_command *command)
 {
 	char	*wd;
@@ -15,6 +16,6 @@ char	*__cd__(t_command *command)
 	wd = getcwd(NULL, 0);
 	ret = chdir(command -> args);
 	if (ret != 0)
-		puts("No such directory");
+		puts("cd: no such file or directory");
 	return NULL;
 }

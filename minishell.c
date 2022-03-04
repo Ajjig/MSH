@@ -6,6 +6,8 @@ t_command	*get_next_cmd(void)
 	t_command	*command;
 
 	read = readline(MINISHELL);
+	if (ft_strlen(read) > 0)
+		add_history(read);
 	command = get_cammand(read);
 	free(read);
 	return command;
@@ -24,20 +26,25 @@ void	free_cmd(t_command *command)
 	}
 }
 
-int	main(void)
+int	main(int ac, char **av, char **envp)
 {
 	t_command	*command;
+	t_envlist	*lst;
 
+	ac = 0;
+	av = NULL;
+
+	lst = __env__init(envp);
 	while (true)
 	{
 		command = get_next_cmd();
-		__exec__(command);
+		__exec__(command, lst);
 		if (command -> program != NULL && ft_strcmp(command -> program, "exit") == 0)
 		{
 			free_cmd(command);
 			exit(0);
 		}
-		printf("command == %s\nOprions == %s\nargs   == %s\n", command -> program, command -> options, command -> args);
+		//printf("command == %s\nOptions == %s\nargs   == %s\n", command -> program, command -> options, command -> args);
 		free_cmd(command);
 	}
 }

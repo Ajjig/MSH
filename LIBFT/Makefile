@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: majjig <majjig@student.42.fr>              +#+  +:+       +#+         #
+#    By: iidkhebb <iidkhebb@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/10 15:31:37 by majjig            #+#    #+#              #
-#    Updated: 2022/02/26 11:38:01 by majjig           ###   ########.fr        #
+#    Updated: 2022/03/04 18:22:09 by iidkhebb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,15 +46,7 @@ SRCS =  ft_calloc.c \
 		ft_putnbr_fd.c \
 		ft_strcmp.c
 
-BNS = ft_lstnew.c \
-	  ft_lstadd_front.c \
-	  ft_lstsize.c \
-	  ft_lstlast.c \
-	  ft_lstadd_back.c \
-	  ft_lstdelone.c \
-	  ft_lstclear.c \
-	  ft_lstiter.c \
-	  ft_lstmap.c
+BNS = 
 
 OBJS = ${SRCS:.c=.o}
 
