@@ -20,7 +20,8 @@ SRCS =	minishell.c \
 		__echo.c \
 		__env.c \
 		list_lib.c \
-		__export.c
+		__export.c \
+		gen_arg_list.c
 
 OBJS =	${SRC:.c=.o}
 

@@ -10,5 +10,6 @@ t_command	*init_cmd(void)
 	command -> redirection = NULL;
 	command -> options = NULL;
 	command -> args = NULL;
+	command -> argslist = NULL;
 	return (command);
 }

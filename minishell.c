@@ -38,6 +38,7 @@ int	main(int ac, char **av, char **envp)
 	while (true)
 	{
 		command = get_next_cmd();
+		command -> argslist = gen_arg_list(command -> args);
 		__exec__(command, lst);
 		if (command -> program != NULL && ft_strcmp(command -> program, "exit") == 0)
 		{
