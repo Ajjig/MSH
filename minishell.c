@@ -58,8 +58,6 @@ int	main(int ac, char **av, char **envp)
 			free_cmd(command);
 			exit(0);
 		}
-		while (command -> args && command -> args[ac])
-			printf("args === %s\n", command -> args[ac++]);
 		free_cmd(command);
 		command = NULL;
 	}
