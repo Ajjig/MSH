@@ -27,12 +27,14 @@ char **linked_double(t_envlist *lst)
 char *exeve_handler(t_command *command, t_envlist *lst)
 {
 	char **buff;
+	char *const db[] = {command->program, command->options, NULL};
+ 	buff = linked_double(lst);
 
-	buff = linked_double(lst);
-	printf("%s\n", buff[0]);
 	int pid = fork();
 	if (pid == 0)
-		execve(command -> program, command -> args, buff);
+	{
+		execve(command -> program, db, buff);
+	}
 	else
 		wait(NULL);
 	return (free(buff), NULL);
