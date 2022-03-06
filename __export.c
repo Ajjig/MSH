@@ -9,23 +9,22 @@ char *__export(t_envlist *lst, t_command *command)
 	if (!command->args)
 		return NULL;
 
-
 	while (tmp)
 	{
-		if (!strncmp(command->args, tmp->var_name, ft_strlen(tmp->var_name)) && (command->args[ft_strlen(tmp->var_name)] == '=' || command->args[ft_strlen(tmp->var_name)] == '+'))
+		if (!strncmp(command->args[0], tmp->var_name, ft_strlen(tmp->var_name)) && (command->args[0][ft_strlen(tmp->var_name)] == '=' || command->args[0][ft_strlen(tmp->var_name)] == '+'))
 		{
-			if (command->args[ft_strlen(tmp->var_name)] == '+')
+			if (command->args[0][ft_strlen(tmp->var_name)] == '+')
 			{
 				tofree = tmp->var_content;
-				tmp->var_content = ft_strjoin(tmp->var_content, &command->args[ft_strlen(tmp->var_name)+2]);
+				tmp->var_content = ft_strjoin(tmp->var_content, &command->args[0][ft_strlen(tmp->var_name)+2]);
 				free(tofree);
 			}
 			else
-				tmp->var_content = ft_strdup(&command->args[ft_strlen(tmp->var_name) + 1]);
+				tmp->var_content = ft_strdup(&command->args[0][ft_strlen(tmp->var_name) + 1]);
 			return NULL;
 		}
 		tmp = tmp->next;
 	}
-	ft_lstadd_back(&lst, ft_lstnew(command->args));
+	ft_lstadd_back(&lst, ft_lstnew(command->args[0]));
 	return NULL;
 }

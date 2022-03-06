@@ -11,13 +11,13 @@ char *__echo(t_command *commad)
 	}
 	else if (commad->options && !ft_strcmp(commad->options, "-n"))
 	{
-		printf("%s", commad->args);
-		return ft_strdup(commad->args);
+		printf("%s", commad->args[0]);
+		return ft_strdup(commad->args[0]);
 	}
 	else if (!commad->options && commad->args)
 	{
-		printf("%s\n", commad->args);
-		return ft_strdup(commad->args);
+		printf("%s\n", commad->args[0]);
+		return ft_strdup(commad->args[0]);
 	}
 	return NULL;
 }

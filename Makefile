@@ -21,7 +21,7 @@ SRCS =	minishell.c \
 		__env.c \
 		list_lib.c \
 		__export.c \
-		gen_arg_list.c
+		args_splitter.c
 
 OBJS =	${SRC:.c=.o}
 

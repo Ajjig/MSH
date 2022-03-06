@@ -41,23 +41,17 @@
 
 /*  TYPEDEFS  */
 
-typedef struct s_arglist
-{
-	char				*arg;
-	struct s_arglist	*next;
-}				t_arglist;
-
 typedef struct s_command
 {
 	char				*redirection;
 	int					fds[2];
 	char				*other;
 	char				*program;
-	char				*args;
+	char				**args;
 	char				*output;
-	t_arglist			*argslist;
 	struct s_command	*next;
 	char				*options;
+	char				**all;
 }				t_command;
 
 typedef struct s_envlist // linked lst
@@ -69,14 +63,14 @@ typedef struct s_envlist // linked lst
 
 /*  PROTOTYPES  */
 
-t_command	*get_cammand(char *read);
-t_command	*init_cmd(void);
+t_command	*get_cammand(char **buff);
+t_command	*init_cmd(char **buff);
 void		free_cmd(t_command *command);
 char		*__cd__(t_command *command);
 void		__exec__(t_command *command, t_envlist *lst);
 char		*__cwd__(t_command *commad);
 char		*__next__(char *str);
-t_arglist	*gen_arg_list(char *args);
+char		**args_splitter(char *s);
 
 
 char		*__echo(t_command *commad);

@@ -10,10 +10,9 @@ char	*__next__(char *str)
 		str++;
 	if (ft_strchr("><", str[len]))
 	{
+		len = 1;
 		if (str[len] == str[len + 1])
-			len = 2;
-		else
-			len = 1;
+			len++;
 	}
 	else if (str[len] == '|')
 		len = 1;
@@ -84,6 +83,7 @@ char	*args_joiner(char *args, char *new)
 {
 	char	*joined;
 	char	*space;
+
 	if (args == NULL)
 		return (ft_strdup(new));
 	space = ft_strjoin(args, " ");
@@ -94,37 +94,33 @@ char	*args_joiner(char *args, char *new)
 }
 
 
-t_command	*get_cammand(char *read)
+t_command	*get_cammand(char **buff)
 {
 	int			i;
 	t_command	*command;
-	char		*next;
+	int			ai;
 	int			loop;
+
+	ai = 0;
 
 	i = 0;
 	loop = 0;
-	command = init_cmd();
-	while (read[i])
+	command = init_cmd(buff);
+	while(buff[i])
 	{
-		next = __next__(&read[i]);
-		if (next == NULL)
-			return NULL;
-		i += ft_strlen(next);
-		while (ft_strchr(WHITE_SPACES, read[i]) && read[i])
-			i++;
-		if (loop == 0)
-			command -> program = is_in_list(next);
-		else if (loop == 1 && next[0] == FLAG_HYPHEN)
-			command -> options = ft_strdup(next);
-		else if (ft_strchr(REDIRECTIONS, next[0]))
+		command -> program = is_in_list(buff[i]);
+		i++;
+		while (buff[i] && buff[i][0] == FLAG_HYPHEN)
 		{
-			command -> redirection = ft_strdup(next);
-			break ;
+			free(command -> options);
+			command -> options = ft_strjoin(command -> options, buff[i++]);
 		}
-		else if (loop > 1 || (loop == 1 && command -> options == NULL))
-			command -> args = args_joiner(command -> args, next);
-		free(next);
-		loop ++;
+		if (buff[i] && ft_strchr(REDIRECTIONS, buff[i][0]))
+			command -> redirection = ft_strdup(buff[i++]);
+		while (buff[i])
+			command -> args[ai++] = ft_strdup(buff[i++]);
 	}
+	command ->args[ai] = NULL;
+	command -> all = buff;
 	return command;
 }

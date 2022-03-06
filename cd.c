@@ -6,7 +6,7 @@ char	*__cd__(t_command *command)
 	int		ret;
 	char	*user;
 
-	if (command -> args == NULL || ft_strcmp(command -> args, "~") == 0)
+	if (command -> args == NULL || ft_strcmp(command -> args[0], "~") == 0)
 	{
 		user = getenv("USER");
 		chdir("/Users/");
@@ -14,7 +14,7 @@ char	*__cd__(t_command *command)
 		return NULL;
 	}
 	wd = getcwd(NULL, 0);
-	ret = chdir(command -> args);
+	ret = chdir(command -> args[0]);
 	if (ret != 0)
 		puts("cd: no such file or directory");
 	return NULL;
