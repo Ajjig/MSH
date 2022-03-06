@@ -26,15 +26,13 @@ char **linked_double(t_envlist *lst)
 
 char *exeve_handler(t_command *command, t_envlist *lst)
 {
-	char **buff;
-	char *const db[] = {command->program, command->options, NULL};
- 	buff = linked_double(lst);
+	char	**buff;
+	int		pid;
 
-	int pid = fork();
+ 	buff = linked_double(lst);
+	pid = fork();
 	if (pid == 0)
-	{
-		execve(command -> program, db, buff);
-	}
+		execve(command -> program, command -> execve, buff);
 	else
 		wait(NULL);
 	return (free(buff), NULL);

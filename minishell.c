@@ -18,9 +18,6 @@ t_command	*get_next_cmd(void)
 		add_history(read);
 	buff = args_splitter(read);
 	command = get_cammand(buff);
-	while (buff[i])
-		free(buff[i++]);
-	free(buff);
 	free(read);
 	return command;
 }
@@ -33,6 +30,10 @@ void	free_cmd(t_command *command)
 	free(command -> program);
 	while (command -> args && command -> args[i])
 		free(command -> args[i++]);
+	i = 0;
+	while (command -> execve[i])
+		free(command -> execve[i++]);
+	free(command -> execve);
 	free(command -> args);
 	free(command -> options);
 	free(command -> redirection);

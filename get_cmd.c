@@ -121,6 +121,6 @@ t_command	*get_cammand(char **buff)
 			command -> args[ai++] = ft_strdup(buff[i++]);
 	}
 	command ->args[ai] = NULL;
-	command -> all = buff;
+	command -> execve = buff;
 	return command;
 }

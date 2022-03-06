@@ -51,7 +51,7 @@ typedef struct s_command
 	char				*output;
 	struct s_command	*next;
 	char				*options;
-	char				**all;
+	char				**execve;
 }				t_command;
 
 typedef struct s_envlist // linked lst
