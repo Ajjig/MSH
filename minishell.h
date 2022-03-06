@@ -82,4 +82,6 @@ t_envlist	*ft_lstnew(char *s);
 t_envlist	*ft_lstlast(t_envlist *lst);
 void		ft_lstadd_back(t_envlist **lst, t_envlist *new);
 
+
+int signal_handler();
 #endif

@@ -9,6 +9,11 @@ t_command	*get_next_cmd(void)
 
 	i = 0;
 	read = readline(MINISHELL);
+	if (!read)
+	{
+		puts("exit");
+		exit(1);
+	}
 	if (ft_strlen(read) > 0)
 		add_history(read);
 	buff = args_splitter(read);
@@ -41,6 +46,7 @@ int	main(int ac, char **av, char **envp)
 
 	av = NULL;
 	lst = __env__init(envp);
+	signal_handler();
 	while (true)
 	{
 		ac = 0;
