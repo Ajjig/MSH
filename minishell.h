@@ -67,7 +67,7 @@ typedef struct s_envlist // linked lst
 t_command	*get_cammand(char **buff);
 t_command	*init_cmd(char **buff);
 void		free_cmd(t_command *command);
-char		*__cd__(t_command *command);
+char	*__cd__(t_command *command, t_envlist *lst);
 void	__exec__(t_command *command, t_envlist *lst);
 char		*__cwd__(t_command *commad);
 char		*__next__(char *str);

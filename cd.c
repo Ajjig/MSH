@@ -1,21 +1,29 @@
 #include "minishell.h"
 
-char	*__cd__(t_command *command)
+char	*__cd__(t_command *command, t_envlist *lst)
 {
 	char	*wd;
 	int		ret;
 	char	*user;
 
-	if (command -> args == NULL || ft_strcmp(command -> args[0], "~") == 0)
+	if (command -> args[0] == NULL || ft_strcmp(command -> args[0], "~") == 0)
 	{
 		user = getenv("USER");
 		chdir("/Users/");
-		chdir(user);
-		return NULL;
+		ret = chdir(user);
 	}
+	else
+		ret = chdir(command -> args[0]);
+
 	wd = getcwd(NULL, 0);
-	ret = chdir(command -> args[0]);
 	if (ret != 0)
 		puts("cd: no such file or directory");
+	else
+	{
+		free(command->args[0]);
+		command->args[0] = ft_strjoin("PWD=", wd);
+		__export(lst, command);
+	}
+	free(wd);
 	return NULL;
 }
