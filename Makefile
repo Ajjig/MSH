@@ -22,7 +22,8 @@ SRCS =	minishell.c \
 		list_lib.c \
 		__export.c \
 		args_splitter.c \
-		sig_handler.c
+		sig_handler.c \
+		execve.c
 
 OBJS =	${SRC:.c=.o}
 
@@ -30,6 +31,7 @@ LIBNAME = LIBFT/libft.a
 
 CFLAGS = -Wall -Werror -Wextra
 CFLAGS += -lreadline
+CFLAGS +=
 
 CC = gcc
 

@@ -17,11 +17,6 @@ void	__exec__(t_command *command, t_envlist *lst)
 	else if (ft_strcmp(command -> program, _EXPORT) == 0)
 		output = __export(lst, command);
 	else if (command -> program)
-	{
-		int pid = fork();
-		if (pid == 0)
-			execve(command -> program, command -> args, NULL);
-		else
-			wait(NULL);
-	}
+		exeve_handler(command, lst);
+
 }

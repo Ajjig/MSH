@@ -11,6 +11,7 @@ t_envlist	*ft_lstnew(char *s)
 		return (0);
 	new->var_name = ft_strdup(out[0]);
 	new->var_content = ft_strdup(out[1]);
+	new->stock = s;
 	new->next = NULL;
 	free(out[0]);
 	free(out[1]);

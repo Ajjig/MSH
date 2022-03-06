@@ -58,6 +58,7 @@ typedef struct s_envlist // linked lst
 {
 	char	*var_name;
 	char	*var_content;
+	char	*stock;
 	struct s_envlist *next;
 }				t_envlist;
 
@@ -67,7 +68,7 @@ t_command	*get_cammand(char **buff);
 t_command	*init_cmd(char **buff);
 void		free_cmd(t_command *command);
 char		*__cd__(t_command *command);
-void		__exec__(t_command *command, t_envlist *lst);
+void	__exec__(t_command *command, t_envlist *lst);
 char		*__cwd__(t_command *commad);
 char		*__next__(char *str);
 char		**args_splitter(char *s);
@@ -82,6 +83,6 @@ t_envlist	*ft_lstnew(char *s);
 t_envlist	*ft_lstlast(t_envlist *lst);
 void		ft_lstadd_back(t_envlist **lst, t_envlist *new);
 
-
+char *exeve_handler(t_command *command, t_envlist *lst);
 int signal_handler();
 #endif
