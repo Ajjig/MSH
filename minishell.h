@@ -52,6 +52,8 @@ typedef struct s_command
 	struct s_command	*next;
 	char				*options;
 	char				**execve;
+
+	int					is_append; // fuck u
 }				t_command;
 
 typedef struct s_envlist // linked lst

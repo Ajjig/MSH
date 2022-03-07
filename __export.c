@@ -23,35 +23,52 @@ int ft_tab_len(char **tab)
 	return i;
 }
 
+
 char **export_spliter(t_command *command, int i)
 {
 	char **out;
+	char *tmp;
 
+	tmp = NULL;
 	out = NULL;
 	if (command->args[i] == NULL)
 		return out;
-	if (ft_strchr(command->args[i], '=') != NULL)
+	if (ft_strchr(command->args[i], '+') == NULL)
 	{
+		command->is_append = 0;
 		out = ft_split(command->args[i], '=');
 	}
-	// else if (ft_strchr(command->args[i], '+') != NULL)
-	// {
-	// 	out = ft_split(command->args[i], '+');
-	// }
+	else if (ft_strchr(command->args[i], '+') != NULL)
+	{
+		command->is_append = 1;
+		out = ft_split(command->args[i], '+');
+		tmp = out[1];
+		out[1] = ft_strdup(ft_strchr(out[1], '=') + 1);
+		free(tmp);
+	}
 	return out;
 }
 
-void __export_utils(char **tab, t_envlist *lst)
+void __export_utils(char **tab, t_envlist *lst, t_command *command)
 {
 	t_envlist *tmp;
+	char *to_free;
 
 	tmp = lst;
+	to_free = NULL;
 	while (tmp != NULL)
 	{
-		if(!ft_strcmp(tmp->var_name, tab[0]))
+		if(!ft_strcmp(tmp->var_name, tab[0]) && command->is_append == 0) // NO APPEND
 		{
 			free(tmp->var_content);
 			tmp->var_content = ft_strdup(tab[1]);
+			return ;
+		}
+		else if (!ft_strcmp(tmp->var_name, tab[0]) && command->is_append == 1) // APPEND
+		{
+			to_free = tmp->var_content;
+			tmp->var_content = ft_strjoin(tmp->var_content, tab[1]);
+			free(to_free);
 			return ;
 		}
 		tmp = tmp->next;
@@ -67,7 +84,6 @@ char *__export(t_envlist *lst, t_command *command)
 
 	i = 0;
 	tablen = 0;
-
 	if (!command->args)
 		return NULL;
 
@@ -76,7 +92,9 @@ char *__export(t_envlist *lst, t_command *command)
 	while (tablen != 0)
 	{
 		tab = export_spliter(command, i);
-		__export_utils(tab, lst);
+		if (!tab)
+			return NULL;
+		__export_utils(tab, lst, command);
 		tablen--;
 		i++;
 		free(tab[0]);
