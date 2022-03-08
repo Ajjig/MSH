@@ -23,7 +23,6 @@ int ft_tab_len(char **tab)
 	return i;
 }
 
-
 char **export_spliter(t_command *command, int i)
 {
 	char **out;
