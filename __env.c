@@ -19,6 +19,8 @@ t_envlist *__env__init(char **envp) // hadi kat 9ad list
 
 	lst = NULL;
 	i  = 0;
+	if(!envp)
+		return lst;
 	while (envp[i])
 	{
 		ft_lstadd_back(&lst, ft_lstnew(envp[i]));
