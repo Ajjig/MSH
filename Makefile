@@ -33,14 +33,14 @@ LIBNAME = LIBFT/libft.a
 
 CFLAGS = -Wall -Werror -Wextra
 CFLAGS += -lreadline
-CFLAGS +=
+CFLAGS += -I$(shell brew --prefix readline)/include
 
 CC = gcc
 
 all: libft $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(SRCS) $(LIBNAME) -o $(NAME)
+	$(CC) $(CFLAGS) -L$(shell brew --prefix readline)/lib $(SRCS) $(LIBNAME) -o $(NAME)
 
 libft:
 	@make -C LIBFT/
