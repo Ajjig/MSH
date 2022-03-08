@@ -36,12 +36,12 @@ char **export_spliter(t_command *command, int i)
 	if (ft_strchr(command->args[i], '+') == NULL)
 	{
 		command->is_append = 0;
-		out = ft_split(command->args[i], '=');
+		out = ft_split_smart(command->args[i], '=');
 	}
 	else if (ft_strchr(command->args[i], '+') != NULL)
 	{
 		command->is_append = 1;
-		out = ft_split(command->args[i], '+');
+		out = ft_split_smart(command->args[i], '+');
 		tmp = out[1];
 		out[1] = ft_strdup(ft_strchr(out[1], '=') + 1);
 		free(tmp);
@@ -86,7 +86,6 @@ char *__export(t_envlist *lst, t_command *command)
 	tablen = 0;
 	if (!command->args)
 		return NULL;
-
 	tablen = ft_tab_len(command->args);
 
 	while (tablen != 0)

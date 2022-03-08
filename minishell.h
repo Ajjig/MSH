@@ -89,4 +89,5 @@ char		*exeve_handler(t_command *command, t_envlist *lst);
 int			signal_handler();
 int			ft_tab_len(char **tab);
 char		*__unset(t_command *commad, t_envlist *lst);
+char	**ft_split_smart(char const *s, char c);
 #endif
