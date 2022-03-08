@@ -87,5 +87,6 @@ void		ft_lstadd_back(t_envlist **lst, t_envlist *new);
 
 char		*exeve_handler(t_command *command, t_envlist *lst);
 int			signal_handler();
-// char		*__unset(t_command *commad, t_envlist *lst);
+int			ft_tab_len(char **tab);
+char		*__unset(t_command *commad, t_envlist *lst);
 #endif
