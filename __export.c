@@ -1,4 +1,20 @@
 #include "minishell.h"
+
+int check_exp_arg(char *s)
+{
+	int i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (ft_isalpha(s[i]))
+			i++;
+		else
+			return (0);
+	}
+	return (1);
+}
+
 t_envlist	*ft_lstnew_2(char **s)
 {
 	t_envlist	*new;
@@ -36,7 +52,9 @@ char **export_spliter(t_command *command, int i)
 	{
 		command->is_append = 0;
 		out = ft_split_smart(command->args[i], '=');
-		if (!ft_strcmp(command->args[i], out[0]))
+		if (!check_exp_arg(out[0]))
+			return (printf("export: `%s' : not a valid identifier\n", out[0]), NULL);
+		else if (!ft_strcmp(command->args[i], out[0]))
 			return NULL;
 	}
 	else if (ft_strchr(command->args[i], '+') != NULL)
@@ -78,6 +96,18 @@ void __export_utils(char **tab, t_envlist *lst, t_command *command)
 	ft_lstadd_back(&lst, ft_lstnew_2(tab));
 }
 
+char *export_printer(t_envlist *lst)
+{
+	if (!lst)
+		return NULL;
+	while (lst != NULL)
+	{
+		printf("declare -x %s=\"%s\"\n", lst->var_name, lst->var_content);
+		lst = lst->next;
+	}
+	return NULL;
+}
+
 char *__export(t_envlist *lst, t_command *command)
 {
 	char **tab;
@@ -86,8 +116,8 @@ char *__export(t_envlist *lst, t_command *command)
 
 	i = 0;
 	tablen = 0;
-	if (!command->args)
-		return NULL;
+	if (!command->args || !command->args[0])
+		return export_printer(lst);
 	tablen = ft_tab_len(command->args);
 
 	while (tablen != 0)
