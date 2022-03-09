@@ -36,6 +36,8 @@ char **export_spliter(t_command *command, int i)
 	{
 		command->is_append = 0;
 		out = ft_split_smart(command->args[i], '=');
+		if (!ft_strcmp(command->args[i], out[0]))
+			return NULL;
 	}
 	else if (ft_strchr(command->args[i], '+') != NULL)
 	{
@@ -45,6 +47,7 @@ char **export_spliter(t_command *command, int i)
 		out[1] = ft_strdup(ft_strchr(out[1], '=') + 1);
 		free(tmp);
 	}
+
 	return out;
 }
 
