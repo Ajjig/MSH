@@ -4,3 +4,4 @@ minishell
 .vscode
 minishell.dSYM
 .DS_Store
+LIBFT/libft.a

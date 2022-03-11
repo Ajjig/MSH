@@ -1,6 +1,5 @@
 #include "minishell.h"
 
-
 static char	*ft_alloc_fill(char *src)
 {
 	int		i;
