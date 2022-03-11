@@ -41,6 +41,14 @@
 
 /*  TYPEDEFS  */
 
+typedef struct s_export
+{
+	char *var_name;
+	char *content;
+	bool is_append;
+
+}t_export ;
+
 typedef struct s_command
 {
 	char				*redirection;
@@ -54,6 +62,8 @@ typedef struct s_command
 	char				**execve;
 
 	int					is_append; // fuck u
+	t_export			*export;
+
 }				t_command;
 
 typedef struct s_envlist // linked lst
@@ -90,4 +100,6 @@ int			signal_handler();
 int			ft_tab_len(char **tab);
 char		*__unset(t_command *commad, t_envlist *lst);
 char		**ft_split_smart(char const *s, char c);
+bool		check_quotes(char	*str);
+
 #endif
