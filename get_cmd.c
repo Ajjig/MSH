@@ -73,7 +73,8 @@ t_command	*get_cammand(char **buff)
 	command = init_cmd(buff);
 	while(buff[i])
 	{
-		command -> program = is_in_list(buff[i]);
+		if (i == 0)
+			command -> program = is_in_list(buff[i]);
 		i++;
 		while (buff[i] && buff[i][0] == FLAG_HYPHEN)
 		{
@@ -82,8 +83,17 @@ t_command	*get_cammand(char **buff)
 		}
 		if (buff[i] && ft_strchr(REDIRECTIONS, buff[i][0]))
 			command -> redirection = ft_strdup(buff[i++]);
+		if (buff[i] && ft_strchr(REDIRECTIONS, buff[i][0]))
+			command -> redirection = ft_strdup(buff[i++]);
 		while (buff[i])
+		{
+			if (ft_strchr(REDIRECTIONS, buff[i][0]))
+			{
+				command -> redirection = ft_strdup(buff[i++]);
+				break ;
+			}
 			command -> args[ai++] = ft_strdup(buff[i++]);
+		}
 	}
 	command ->args[ai] = NULL;
 	command -> execve = buff;
