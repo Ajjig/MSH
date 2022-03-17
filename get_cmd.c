@@ -1,39 +1,5 @@
 #include "minishell.h"
 
-char	*__next__(char *str)
-{
-	int		len;
-	char	*next;
-
-	len = 0;
-	while (ft_strchr(WHITE_SPACES, *str) && *str)
-		str++;
-	if (ft_strchr("><", str[len]))
-	{
-		len = 1;
-		if (str[len] == str[len + 1])
-			len++;
-	}
-	else if (str[len] == '|')
-		len = 1;
-	else
-	{
-		while (!ft_strchr(REDIRECTIONS, str[len]) && !ft_strchr(WHITE_SPACES, str[len]) && str[len])
-		{
-			if (str[len] == DOUBLE_QUOTE)
-				while (str[++len] != DOUBLE_QUOTE && str[len]){}
-			else if (str[len] == SINGLE_QUOTE)
-				while (str[++len] != SINGLE_QUOTE && str[len]){}
-			len ++;
-		}
-	}
-	if (len == 0)
-		return NULL;
-	next = (char *) malloc ((len + 1) * sizeof(char));
-	ft_strlcpy(next, str, len + 1);
-	return (next);
-}
-
 char	*path_joiner(char *path, char *cmd)
 {
 	char	*ret;
