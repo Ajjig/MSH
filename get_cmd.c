@@ -67,12 +67,9 @@ t_command	*get_cammand(char **buff)
 	int			i;
 	t_command	*command;
 	int			ai;
-	int			loop;
 
 	ai = 0;
-
 	i = 0;
-	loop = 0;
 	command = init_cmd(buff);
 	while(buff[i])
 	{
