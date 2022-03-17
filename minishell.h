@@ -60,7 +60,6 @@ typedef struct s_command
 	struct s_command	*next;
 	char				*options;
 	char				**execve;
-
 	int					is_append; // fuck u
 	t_export			*export;
 
@@ -76,7 +75,7 @@ typedef struct s_envlist // linked lst
 
 /*  PROTOTYPES  */
 
-t_command	*get_cammand(char **buff);
+t_command	*get_cammand(char **buff, int i);
 t_command	*init_cmd(char **buff);
 void		free_cmd(t_command *command);
 char		*__cd__(t_command *command, t_envlist *lst);

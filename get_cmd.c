@@ -62,34 +62,30 @@ char	*args_joiner(char *args, char *new)
 }
 
 
-t_command	*get_cammand(char **buff)
+t_command	*get_cammand(char **buff, int i)
 {
-	int			i;
 	t_command	*command;
 	int			ai;
 
 	ai = 0;
-	i = 0;
+	if (buff[i] == NULL)
+		return (NULL);
 	command = init_cmd(buff);
-	while(buff[i])
+	command -> program = is_in_list(buff[i++]);
+	while (buff[i])
 	{
-		if (i == 0)
-			command -> program = is_in_list(buff[i]);
-		i++;
 		while (buff[i] && buff[i][0] == FLAG_HYPHEN)
 		{
 			free(command -> options);
 			command -> options = ft_strjoin(command -> options, buff[i++]);
 		}
-		if (buff[i] && ft_strchr(REDIRECTIONS, buff[i][0]))
-			command -> redirection = ft_strdup(buff[i++]);
-		if (buff[i] && ft_strchr(REDIRECTIONS, buff[i][0]))
-			command -> redirection = ft_strdup(buff[i++]);
 		while (buff[i])
 		{
 			if (ft_strchr(REDIRECTIONS, buff[i][0]))
 			{
-				command -> redirection = ft_strdup(buff[i++]);
+				command -> redirection = ft_strdup(buff[i]);
+				if (buff[i++][0] == RED_PIPE)
+					command -> next = get_cammand(buff, i);
 				break ;
 			}
 			command -> args[ai++] = ft_strdup(buff[i++]);

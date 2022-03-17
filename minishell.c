@@ -17,7 +17,7 @@ t_command	*get_next_cmd(void)
 	if (ft_strlen(read) > 0)
 		add_history(read);
 	buff = args_splitter(read);
-	command = get_cammand(buff);
+	command = get_cammand(buff, 0);
 	free(read);
 	return command;
 }
