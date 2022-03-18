@@ -75,23 +75,22 @@ t_command	*get_cammand(char **buff, int i)
 	while (buff[i])
 	{
 		while (buff[i] && buff[i][0] == FLAG_HYPHEN)
-		{
-			free(command -> options);
-			command -> options = ft_strjoin(command -> options, buff[i++]);
-		}
+			command -> options = ft_strdup(buff[i++]);
 		while (buff[i])
 		{
 			if (ft_strchr(REDIRECTIONS, buff[i][0]))
-			{
 				command -> redirection = ft_strdup(buff[i]);
-				if (buff[i++][0] == RED_PIPE)
-					command -> next = get_cammand(buff, i);
-				break ;
+			if (buff[i][0] == RED_PIPE)
+			{
+				command -> next = get_cammand(buff, ++i);
+				command -> args[ai] = NULL;
+				command -> execve = buff;
+				return (command);
 			}
 			command -> args[ai++] = ft_strdup(buff[i++]);
 		}
 	}
-	command ->args[ai] = NULL;
+	command -> args[ai] = NULL;
 	command -> execve = buff;
 	return command;
 }
