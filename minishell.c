@@ -39,6 +39,52 @@ void	free_cmd(t_command *command)
 	free(command -> redirection);
 	free(command);
 }
+void pipe_handler(t_command *command, t_envlist *lst)
+{
+	int fd[2];
+	int save_stdout = dup(0);
+	t_command *tmp;
+	int pid;
+
+	tmp = command;
+	while (tmp)
+	{
+		if (tmp->next)
+			pipe(fd);
+		pid = fork();
+		if (pid < 0)
+			perror("error\n");
+		if (pid == 0)
+		{
+			if (tmp->next)
+			{
+				close(1);
+				dup2(fd[1], 1);
+				close(fd[1]);
+				close(fd[0]);
+			}
+			__exec__(tmp, lst);
+			exit(0);
+		}
+		close(0);
+		if (tmp->next)
+		{
+			dup2(fd[0], 0);
+			close(fd[0]);
+			close(fd[1]);
+		}
+		tmp = tmp->next;
+	}
+	tmp = command;
+	while (tmp)
+	{
+		wait(NULL);
+		tmp = tmp->next;
+	}
+	close(0);
+	dup2(save_stdout, 0);
+	close(save_stdout);
+}
 
 int	main(int ac, char **av, char **envp)
 {
@@ -52,7 +98,19 @@ int	main(int ac, char **av, char **envp)
 	{
 		ac = 0;
 		command = get_next_cmd();
-		__exec__(command, lst);
+
+
+		if (command->next)
+			pipe_handler(command, lst);
+		else
+		{
+			signal(SIGINT, SIG_DFL);
+			signal(SIGQUIT, SIG_DFL);
+			__exec__(command, lst);
+		}
+
+
+
 		if (command -> program != NULL && ft_strcmp(command -> program, "exit") == 0)
 		{
 			free_cmd(command);

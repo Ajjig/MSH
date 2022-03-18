@@ -32,7 +32,9 @@ char *exeve_handler(t_command *command, t_envlist *lst)
 	pid = fork();
 
 	if (pid == 0)
+	{
 		execve(command -> program, command -> execve, buff);
+	}
 	else
 		wait(NULL);
 	return (free(buff), NULL);
