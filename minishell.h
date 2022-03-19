@@ -47,12 +47,19 @@ typedef struct s_export
 	char *content;
 	bool is_append;
 
-}t_export ;
+}				t_export ;
+
+typedef struct s_fds
+{
+	int				fd;
+	struct s_fds	*next;
+}				t_fds;
+
 
 typedef struct s_command
 {
 	char				*redirection;
-	int					fds[2];
+	t_fds				*fds;
 	char				*other;
 	char				*program;
 	char				**args;
@@ -60,7 +67,8 @@ typedef struct s_command
 	struct s_command	*next;
 	char				*options;
 	char				**execve;
-	int					is_append; // fuck u
+	int					flags;
+	int					is_append;
 	t_export			*export;
 
 }				t_command;
@@ -100,5 +108,7 @@ int			ft_tab_len(char **tab);
 char		*__unset(t_command *commad, t_envlist *lst);
 char		**ft_split_smart(char const *s, char c);
 bool		check_quotes(char	*str);
+void		gen_fds(t_command *command, int fd);
+char		**get_execve(char **buff, int i);
 
 #endif

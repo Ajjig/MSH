@@ -66,7 +66,9 @@ t_command	*get_cammand(char **buff, int i)
 {
 	t_command	*command;
 	int			ai;
+	int			tmp;
 
+	tmp = i;
 	ai = 0;
 	if (buff[i] == NULL)
 		return (NULL);
@@ -78,19 +80,28 @@ t_command	*get_cammand(char **buff, int i)
 			command -> options = ft_strdup(buff[i++]);
 		while (buff[i])
 		{
-			if (ft_strchr(REDIRECTIONS, buff[i][0]))
-				command -> redirection = ft_strdup(buff[i]);
 			if (buff[i][0] == RED_PIPE)
 			{
-				command -> next = get_cammand(buff, ++i);
 				command -> args[ai] = NULL;
-				command -> execve = buff;
+				command -> execve = get_execve(buff, tmp);
+				command -> next = get_cammand(buff, ++i);
 				return (command);
+			}
+			else if (ft_strchr(REDIRECTIONS, buff[i][0]))
+			{
+				command -> redirection = ft_strdup(buff[i]);
+				if (!ft_strcmp(buff[i], ">>"))
+					command -> flags |= O_APPEND;
+				else if (!ft_strcmp(buff[i], ">"))
+					command -> flags |= O_TRUNC;
+				while (buff[++i])
+					gen_fds(command, open(buff[i], command -> flags, 0644));
+				break ;
 			}
 			command -> args[ai++] = ft_strdup(buff[i++]);
 		}
 	}
 	command -> args[ai] = NULL;
-	command -> execve = buff;
+	command -> execve = get_execve(buff, 0);
 	return command;
 }

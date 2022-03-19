@@ -98,8 +98,6 @@ int	main(int ac, char **av, char **envp)
 	{
 		ac = 0;
 		command = get_next_cmd();
-
-
 		if (command->next)
 			pipe_handler(command, lst);
 		else
@@ -108,9 +106,6 @@ int	main(int ac, char **av, char **envp)
 			signal(SIGQUIT, SIG_DFL);
 			__exec__(command, lst);
 		}
-
-
-
 		if (command -> program != NULL && ft_strcmp(command -> program, "exit") == 0)
 		{
 			free_cmd(command);

@@ -26,7 +26,9 @@ SRCS =	minishell.c \
 		execve.c \
 		__unset.c \
 		split_smart.c \
-		quotes.c
+		quotes.c \
+		fds.c \
+		get_execve.c
 
 OBJS =	${SRC:.c=.o}
 
