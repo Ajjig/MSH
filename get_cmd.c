@@ -82,7 +82,7 @@ t_command	*get_cammand(char **buff, int i)
 			command -> next = get_cammand(buff, ++i);
 			break ;
 		}
-		if (ft_strchr(REDIRECTIONS, buff[i][0]) && i == 1)
+		if (ft_strchr(REDIRECTIONS, buff[i][0]))
 		{
 			command -> redirection = ft_strdup(buff[i]);
 			gen_files(command, buff[++i]);

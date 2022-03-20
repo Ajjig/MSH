@@ -42,10 +42,11 @@ void	free_cmd(t_command *command)
 void redirection_handler(t_command *command)
 {
 	int file_out;
-	// int permision;
+
 	file_out = 0;
 	if (command->files != NULL)
 	{
+
 		if (!ft_strcmp(command->redirection, ">"))
 		{
 			file_out = open(command->files->file, O_CREAT | O_RDWR | O_TRUNC, 0666);
@@ -80,6 +81,7 @@ void pipe_handler(t_command *command, t_envlist *lst)
 	int pid;
 
 	tmp = command;
+
 	while (tmp)
 	{
 		if (tmp->next)
@@ -96,10 +98,9 @@ void pipe_handler(t_command *command, t_envlist *lst)
 				close(fd[1]);
 				close(fd[0]);
 			}
-			// rederiction
-			redirection_handler(command);
-			// rederiction
+			redirection_handler(tmp);
 			__exec__(tmp, lst);
+
 			exit(0);
 		}
 		close(0);
@@ -134,14 +135,9 @@ int	main(int ac, char **av, char **envp)
 	{
 		ac = 0;
 		command = get_next_cmd();
-		// if (command->next)
+		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
 		pipe_handler(command, lst);
-		// else
-		// {
-		// 	signal(SIGINT, SIG_DFL);
-		// 	signal(SIGQUIT, SIG_DFL);
-		// 	__exec__(command, lst);
-		// }
 		if (command -> program != NULL && ft_strcmp(command -> program, "exit") == 0)
 		{
 			free_cmd(command);
