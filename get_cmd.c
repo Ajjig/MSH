@@ -76,20 +76,18 @@ t_command	*get_cammand(char **buff, int i)
 	command -> program = is_in_list(buff[i++]);
 	while (buff[i])
 	{
+		command -> args[ai++] = ft_strdup(buff[i]);
 		if (buff[i][0] == RED_PIPE)
 		{
-			command -> args[ai] = NULL;
-			command -> execve = get_execve(buff, tmp);
 			command -> next = get_cammand(buff, ++i);
-			return (command);
+			break ;
 		}
-		if (ft_strchr(REDIRECTIONS, buff[i][0]))
+		if (ft_strchr(REDIRECTIONS, buff[i][0]) && i == 1)
 		{
 			command -> redirection = ft_strdup(buff[i]);
 			gen_files(command, buff[++i]);
-			break ;
 		}
-		command -> args[ai++] = ft_strdup(buff[i++]);
+		i++;
 	}
 	command -> args[ai] = NULL;
 	command -> execve = get_execve(buff, tmp);

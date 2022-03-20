@@ -13,7 +13,7 @@ char	**get_execve(char **buff, int i)
 	if (buff[len] == NULL && i == 0)
 		return (buff);
 	execve = (char **) malloc (((len - i) + 1) * sizeof(char *));
-	while (j < len - i)
+	while (j <= len - i)
 		execve[j++] = ft_strdup(buff[i++]);
 	execve[j] = NULL;
 	return (execve);
