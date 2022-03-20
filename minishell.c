@@ -39,6 +39,29 @@ void	free_cmd(t_command *command)
 	free(command -> redirection);
 	free(command);
 }
+void redirection_handler(t_command *command)
+{
+	int file_out;
+	int permision;
+
+	if (command->files != NULL)
+	{
+		if (!ft_strcmp(command->redirection, ">"))
+		{
+
+			file_out = open(command->files->file, O_CREAT | O_RDWR | O_TRUNC, 0666);
+			dup2(file_out, 1);
+			close(file_out);
+		}
+		else if (!ft_strcmp(command->redirection, ">>"))
+		{
+			file_out = open(command->files->file, O_CREAT | O_RDWR | O_APPEND, 0666);
+			dup2(file_out, 1);
+			close(file_out);
+		}
+	}
+}
+
 void pipe_handler(t_command *command, t_envlist *lst)
 {
 	int fd[2];
@@ -63,6 +86,9 @@ void pipe_handler(t_command *command, t_envlist *lst)
 				close(fd[1]);
 				close(fd[0]);
 			}
+			// rederiction
+			redirection_handler(command);
+			// rederiction
 			__exec__(tmp, lst);
 			exit(0);
 		}
@@ -98,14 +124,14 @@ int	main(int ac, char **av, char **envp)
 	{
 		ac = 0;
 		command = get_next_cmd();
-		if (command->next)
-			pipe_handler(command, lst);
-		else
-		{
-			signal(SIGINT, SIG_DFL);
-			signal(SIGQUIT, SIG_DFL);
-			__exec__(command, lst);
-		}
+		// if (command->next)
+		pipe_handler(command, lst);
+		// else
+		// {
+		// 	signal(SIGINT, SIG_DFL);
+		// 	signal(SIGQUIT, SIG_DFL);
+		// 	__exec__(command, lst);
+		// }
 		if (command -> program != NULL && ft_strcmp(command -> program, "exit") == 0)
 		{
 			free_cmd(command);
