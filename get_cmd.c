@@ -90,18 +90,13 @@ t_command	*get_cammand(char **buff, int i)
 			else if (ft_strchr(REDIRECTIONS, buff[i][0]))
 			{
 				command -> redirection = ft_strdup(buff[i]);
-				if (!ft_strcmp(buff[i], ">>"))
-					command -> flags |= O_APPEND;
-				else if (!ft_strcmp(buff[i], ">"))
-					command -> flags |= O_TRUNC;
-				while (buff[++i])
-					gen_fds(command, open(buff[i], command -> flags, 0644));
+				gen_files(command, buff[++i]);
 				break ;
 			}
 			command -> args[ai++] = ft_strdup(buff[i++]);
 		}
 	}
 	command -> args[ai] = NULL;
-	command -> execve = get_execve(buff, 0);
+	command -> execve = get_execve(buff, tmp);
 	return command;
 }

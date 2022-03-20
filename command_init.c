@@ -14,7 +14,7 @@ t_command	*init_cmd(char **buff)
 	command -> next = NULL;
 	command -> redirection = NULL;
 	command -> options = NULL;
-	command -> fds = NULL;
+	command -> files = NULL;
 	command -> flags = O_WRONLY | O_CREAT;
 	return (command);
 }

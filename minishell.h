@@ -49,17 +49,17 @@ typedef struct s_export
 
 }				t_export ;
 
-typedef struct s_fds
+typedef struct s_files
 {
-	int				fd;
-	struct s_fds	*next;
-}				t_fds;
+	char			*file;
+	struct s_files	*next;
+}				t_files;
 
 
 typedef struct s_command
 {
 	char				*redirection;
-	t_fds				*fds;
+	t_files				*files;
 	char				*other;
 	char				*program;
 	char				**args;
@@ -108,7 +108,7 @@ int			ft_tab_len(char **tab);
 char		*__unset(t_command *commad, t_envlist *lst);
 char		**ft_split_smart(char const *s, char c);
 bool		check_quotes(char	*str);
-void		gen_fds(t_command *command, int fd);
+void		gen_files(t_command *command, char *file);
 char		**get_execve(char **buff, int i);
 
 #endif
