@@ -42,13 +42,12 @@ void	free_cmd(t_command *command)
 void redirection_handler(t_command *command)
 {
 	int file_out;
-	int permision;
-
+	// int permision;
+	file_out = 0;
 	if (command->files != NULL)
 	{
 		if (!ft_strcmp(command->redirection, ">"))
 		{
-
 			file_out = open(command->files->file, O_CREAT | O_RDWR | O_TRUNC, 0666);
 			dup2(file_out, 1);
 			close(file_out);
@@ -57,6 +56,17 @@ void redirection_handler(t_command *command)
 		{
 			file_out = open(command->files->file, O_CREAT | O_RDWR | O_APPEND, 0666);
 			dup2(file_out, 1);
+			close(file_out);
+		}
+		else if (!ft_strcmp(command->redirection, "<")) // heredoc
+		{
+			file_out = open(command->files->file, O_RDONLY);
+			dup2(file_out, 0);
+			close(file_out);
+		}
+		else if (!ft_strcmp(command->redirection, "<<")) // heredoc
+		{
+			dup2(file_out, 0);
 			close(file_out);
 		}
 	}
