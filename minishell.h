@@ -41,18 +41,11 @@
 
 /*  TYPEDEFS  */
 
-typedef struct s_export
-{
-	char *var_name;
-	char *content;
-	bool is_append;
-
-}				t_export ;
-
 typedef struct s_files
 {
 	char			*file;
 	struct s_files	*next;
+	bool			is_append;
 }				t_files;
 
 
@@ -69,7 +62,6 @@ typedef struct s_command
 	char				**execve;
 	int					flags;
 	int					is_append;
-	t_export			*export;
 
 }				t_command;
 
@@ -108,7 +100,7 @@ int			ft_tab_len(char **tab);
 char		*__unset(t_command *commad, t_envlist *lst);
 char		**ft_split_smart(char const *s, char c);
 bool		check_quotes(char	*str);
-void		gen_files(t_command *command, char *file);
+void		gen_files(t_command *command, char *red, char *file);
 char		**get_execve(char **buff, int i);
 
 #endif

@@ -147,7 +147,15 @@ int	main(int ac, char **av, char **envp)
 	{
 		ac = 0;
 		command = get_next_cmd();
+<<<<<<< HEAD
 		command_roots(command, lst);
+=======
+		if (command == NULL)
+			continue ;
+		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
+		pipe_handler(command, lst);
+>>>>>>> d340f6f3dbbaefa39790f3d454291f8acea27126
 		if (command -> program != NULL && ft_strcmp(command -> program, "exit") == 0)
 		{
 			free_cmd(command);
