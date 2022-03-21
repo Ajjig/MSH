@@ -75,7 +75,8 @@ t_command	*get_cammand(char **buff, int i)
 	command = init_cmd(buff);
 	while (buff[i])
 	{
-		command -> args[ai++] = ft_strdup(buff[i]);
+		if (i > 0)
+			command -> args[ai++] = ft_strdup(buff[i]);
 		if (buff[i][0] == RED_PIPE)
 		{
 			command -> next = get_cammand(buff, ++i);
