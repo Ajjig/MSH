@@ -129,7 +129,7 @@ void pipe_handler(t_command *command, t_envlist *lst)
 
 void command_roots(t_command *command, t_envlist *lst)
 {
-	if (command->next)
+	if (command->next || command->redirection)
 	{
 		signal(SIGINT, SIG_DFL);
 		signal(SIGQUIT, SIG_DFL);
