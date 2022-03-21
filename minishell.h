@@ -41,14 +41,6 @@
 
 /*  TYPEDEFS  */
 
-typedef struct s_export
-{
-	char *var_name;
-	char *content;
-	bool is_append;
-
-}				t_export ;
-
 typedef struct s_files
 {
 	char			*file;
@@ -70,7 +62,6 @@ typedef struct s_command
 	char				**execve;
 	int					flags;
 	int					is_append;
-	t_export			*export;
 
 }				t_command;
 
