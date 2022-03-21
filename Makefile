@@ -28,7 +28,8 @@ SRCS =	minishell.c \
 		split.c \
 		quotes.c \
 		files.c \
-		get_execve.c
+		get_execve.c \
+		error_handler.c
 
 OBJS =	${SRC:.c=.o}
 

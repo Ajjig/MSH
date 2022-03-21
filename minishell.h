@@ -23,7 +23,7 @@
 # define RED_INPUT '<'
 # define RED_PIPE '|'
 # define RED_APPEND ">>"
-# define MINISHELL "\x1b[32mMinishell $\x1b[37m "
+# define MINISHELL "\x1b[35mMinishell $\x1b[37m "
 # define SPACE ' '
 # define FLAG_HYPHEN '-'
 # define REDIRECTIONS ">|<"
@@ -102,5 +102,6 @@ char		**ft_split_smart(char const *s, char c);
 bool		check_quotes(char	*str);
 void		gen_files(t_command *command, char *red, char *file);
 char		**get_execve(char **buff, int i);
+bool		error_checker(char **buff);
 
 #endif

@@ -17,6 +17,8 @@ t_command	*get_next_cmd(void)
 	if (ft_strlen(read) > 0)
 		add_history(read);
 	buff = args_splitter(read);
+	if (error_checker(buff) == false)
+		return (NULL);
 	command = get_cammand(buff, 0);
 	free(read);
 	return command;
@@ -27,6 +29,8 @@ void	free_cmd(t_command *command)
 	int	i;
 
 	i = 0;
+	if (command == NULL)
+		return ;
 	free(command -> program);
 	while (command -> args && command -> args[i])
 		free(command -> args[i++]);
@@ -147,8 +151,9 @@ int	main(int ac, char **av, char **envp)
 	{
 		ac = 0;
 		command = get_next_cmd();
-		command_roots(command, lst);
-		if (command -> program != NULL && ft_strcmp(command -> program, "exit") == 0)
+		if (command)
+			command_roots(command, lst);
+		if (command && command -> program != NULL && ft_strcmp(command -> program, "exit") == 0)
 		{
 			free_cmd(command);
 			exit(0);
