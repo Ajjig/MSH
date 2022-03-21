@@ -135,6 +135,8 @@ int	main(int ac, char **av, char **envp)
 	{
 		ac = 0;
 		command = get_next_cmd();
+		if (command == NULL)
+			continue ;
 		signal(SIGINT, SIG_DFL);
 		signal(SIGQUIT, SIG_DFL);
 		pipe_handler(command, lst);
