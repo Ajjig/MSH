@@ -84,8 +84,8 @@ t_command	*get_cammand(char **buff, int i)
 		}
 		if (ft_strchr(REDIRECTIONS, buff[i][0]))
 		{
-			command -> redirection = ft_strdup(buff[i]);
-			gen_files(command, buff[++i]);
+			command -> redirection = ft_strdup(buff[i++]);
+			gen_files(command, buff[i - 1], buff[i]);
 		}
 		i++;
 	}
