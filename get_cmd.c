@@ -73,7 +73,6 @@ t_command	*get_cammand(char **buff, int i)
 	if (buff[i] == NULL)
 		return (NULL);
 	command = init_cmd(buff);
-	command -> program = is_in_list(buff[i++]);
 	while (buff[i])
 	{
 		command -> args[ai++] = ft_strdup(buff[i]);
@@ -87,6 +86,8 @@ t_command	*get_cammand(char **buff, int i)
 			command -> redirection = ft_strdup(buff[i++]);
 			gen_files(command, buff[i - 1], buff[i]);
 		}
+		if (command -> program == NULL)
+			command -> program = is_in_list(buff[i]);
 		i++;
 	}
 	command -> args[ai] = NULL;
