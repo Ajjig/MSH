@@ -123,6 +123,18 @@ void pipe_handler(t_command *command, t_envlist *lst)
 	close(save_stdout);
 }
 
+void command_roots(t_command *command, t_envlist *lst)
+{
+	if (command->next)
+	{
+		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
+		pipe_handler(command, lst);
+	}
+	else
+		__exec__(command, lst);
+}
+
 int	main(int ac, char **av, char **envp)
 {
 	t_command	*command;
@@ -135,9 +147,7 @@ int	main(int ac, char **av, char **envp)
 	{
 		ac = 0;
 		command = get_next_cmd();
-		signal(SIGINT, SIG_DFL);
-		signal(SIGQUIT, SIG_DFL);
-		pipe_handler(command, lst);
+		command_roots(command, lst);
 		if (command -> program != NULL && ft_strcmp(command -> program, "exit") == 0)
 		{
 			free_cmd(command);
