@@ -43,8 +43,7 @@ char	*is_in_list(char *cmd)
 	i = 0;
 	while (others[i])
 		free(others[i++]);
-	free(others);
-	return (NULL);
+	return (free(others), printf("%s: command not found\n", cmd), NULL);
 }
 
 char	*args_joiner(char *args, char *new)

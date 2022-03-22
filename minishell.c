@@ -43,6 +43,23 @@ void	free_cmd(t_command *command)
 	free(command -> redirection);
 	free(command);
 }
+
+int heredoc(t_command *command)
+{
+	char *prompt;
+	int fd[2];
+
+	pipe(fd);
+	while (1)
+	{
+		prompt = readline("heredoc > ");
+		if (!ft_strcmp(command->files->file, prompt))
+			return (free(prompt), close(fd[1]) ,fd[0]);
+		ft_putstr_fd(prompt, fd[1]);
+		ft_putstr_fd("\n", fd[1]);
+	}
+}
+
 void redirection_handler(t_command *command)
 {
 	int file_out;
@@ -50,7 +67,6 @@ void redirection_handler(t_command *command)
 	file_out = 0;
 	if (command->files != NULL)
 	{
-
 		if (!ft_strcmp(command->redirection, ">"))
 		{
 			file_out = open(command->files->file, O_CREAT | O_RDWR | O_TRUNC, 0666);
@@ -71,9 +87,12 @@ void redirection_handler(t_command *command)
 		}
 		else if (!ft_strcmp(command->redirection, "<<")) // heredoc
 		{
+			file_out = heredoc(command);
 			dup2(file_out, 0);
 			close(file_out);
 		}
+		command->files = command->files->next;
+		redirection_handler(command);
 	}
 }
 
@@ -104,7 +123,6 @@ void pipe_handler(t_command *command, t_envlist *lst)
 			}
 			redirection_handler(tmp);
 			__exec__(tmp, lst);
-
 			exit(0);
 		}
 		close(0);
