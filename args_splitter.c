@@ -1,5 +1,37 @@
 #include "minishell.h"
 
+int	get_len(char *str)
+{
+	int	i;
+	int	len;
+
+	i = 0;
+	len = 0;
+		i = 0;
+	if (str[i] == DOUBLE_QUOTE)
+		while (str[++i] != DOUBLE_QUOTE)
+			len++;
+	else if (str[i] == SINGLE_QUOTE)
+		while (str[++i] != SINGLE_QUOTE)
+			len++;
+	if ((ft_strchr("\"'", str[0])) && ft_strchr("\"'", str[i + 1]))
+	{
+		str[i] = -1;
+		str[i + 1] = -1;
+		return (len + get_len(str + 2));
+	}
+	if (ft_strchr(REDIRECTIONS, str[i]))
+	{
+		len = 1;
+		if (str[i] == str[i + 1])
+			len ++;
+	}
+	else
+		while (str[i] && !ft_strchr(WHITE_SPACES, str[i]) && !ft_strchr(REDIRECTIONS, str[i]) && !ft_strchr("\"'", str[i]))
+			len += (i++ * 0) + 1;
+	return (len);
+}
+
 static char	*trimmer(char *str)
 {
 	int		i;
@@ -7,30 +39,16 @@ static char	*trimmer(char *str)
 	char	*ret;
 	bool	is;
 
-	len = 0;
+	len = get_len(str);
 	i = 0;
 	is = false;
-	if (str[i] == DOUBLE_QUOTE)
-		while (str[++i] != DOUBLE_QUOTE)
-			len++;
-	else if (str[i] == SINGLE_QUOTE)
-		while (str[++i] != SINGLE_QUOTE)
-			len++;
-	else if (ft_strchr(REDIRECTIONS, str[i]))
-	{
-		len = 1;
-		if (str[i] == str[i + 1])
-			len ++;
-	}
-	else
-		while (str[i] && (!ft_strchr(WHITE_SPACES, str[i]) && !ft_strchr(REDIRECTIONS, str[i])))
-			len += (i++ * 0) + 1;
-	i = 0;
 	ret = (char *) malloc (len + 1);
 	if (str[i] == SINGLE_QUOTE || str[i] == DOUBLE_QUOTE)
 		is = true;
 	while (i < len)
 	{
+		while (str[i + 1] == -1)
+			str++;
 		if (is == false)
 			ret[i] = str[i];
 		else if (str[i + 1] != str[0])
