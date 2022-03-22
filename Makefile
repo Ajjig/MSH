@@ -51,7 +51,4 @@ libft:
 	@make -C LIBFT/
 	@echo "LIBFT compiled successfully"
 
-run: all
-	./minishell
-
 .PHONY: libft $(NAME)
