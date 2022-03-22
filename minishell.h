@@ -103,5 +103,6 @@ bool		check_quotes(char	*str);
 void		gen_files(t_command *command, char *red, char *file);
 char		**get_execve(char **buff, int i);
 bool		error_checker(char **buff);
+char		*__get_env(char *read, t_envlist *lst);
 
 #endif

@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-t_command	*get_next_cmd(void)
+t_command	*get_next_cmd(t_envlist *lst)
 {
 	char		*read;
 	t_command	*command;
@@ -16,6 +16,7 @@ t_command	*get_next_cmd(void)
 	}
 	if (ft_strlen(read) > 0)
 		add_history(read);
+	read = __get_env(read, lst);
 	buff = args_splitter(read);
 	if (error_checker(buff) == false)
 		return (NULL);
@@ -150,7 +151,7 @@ int	main(int ac, char **av, char **envp)
 	while (true)
 	{
 		ac = 0;
-		command = get_next_cmd();
+		command = get_next_cmd(lst);
 		if (command)
 			command_roots(command, lst);
 		if (command && command -> program != NULL && ft_strcmp(command -> program, "exit") == 0)
