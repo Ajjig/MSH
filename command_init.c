@@ -10,8 +10,6 @@ t_command	*init_cmd(char **buff)
 		len++;
 	command = (t_command *) malloc (sizeof(t_command));
 	command -> options = NULL;
-	if (buff[1] && !ft_strcmp(buff[0], _ECHO) && buff[1][0] == FLAG_HYPHEN)
-		command -> options = ft_strdup(buff[1]);
 	command -> args = (char **) malloc ((len + 1) * sizeof(char *));
 	command -> program = NULL;
 	command -> next = NULL;

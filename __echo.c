@@ -18,8 +18,8 @@ char *__echo(t_command *commad)
 	}
 	else if (commad->options && !ft_strcmp(commad->options, "-n"))
 	{
-		while (i++ < tablen - 1)
-			printf("%s ", commad->args[i]);
+		while (i < tablen)
+			printf("%s ", commad->args[i++]);
 		return NULL;
 	}
 	else if (!commad->options && commad->args)
