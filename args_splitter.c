@@ -89,6 +89,12 @@ char	**args_splitter(char *str)
 
 	i = 0;
 	j = 0;
+	str = check_quotes(str);
+	if (str == NULL)
+	{
+		puts("Error:\n	expected \" or '");
+		return (NULL);
+	}
 	ret = (char **) malloc ((count_words(str) + 1) * sizeof(char *));
 	while (str[i])
 	{

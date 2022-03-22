@@ -26,6 +26,8 @@ bool	error_checker(char **buff)
 	int	i;
 
 	i = 0;
+	if (buff == NULL)
+		return (false);
 	while (buff[i])
 	{
 		if (is_redirection(buff[i]) && buff[i + 1] == NULL)
