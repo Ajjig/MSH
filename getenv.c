@@ -92,7 +92,7 @@ char	*__get_env(char *read, t_envlist *lst)
 	i = 0;
 	count2 = 0;
 	count1 = 0;
-	ret = (char *) malloc (ft_strlen(read));
+	ret = (char *) malloc (ft_strlen(read) + 1);
 	while (read[i])
 	{
 		if (read[i] == SINGLE_QUOTE && count2 % 2 == 0)
@@ -102,14 +102,11 @@ char	*__get_env(char *read, t_envlist *lst)
 		if (read[i] == '$' && count1 % 2 == 0)
 		{
 			tmp = cutter(&read[++i]);
-			ret = joiner(ret, tmp, lst);
 			i += ft_strlen(tmp);
+			ret = joiner(ret, tmp, lst);
 		}
-		else
-		{
-			ret = add_char(ret, read[i]);
-			i++;
-		}
+		ret = add_char(ret, read[i++]);
 	}
+	free(read);
 	return (ret);
 }
