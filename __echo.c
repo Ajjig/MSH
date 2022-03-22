@@ -1,5 +1,7 @@
 #include "minishell.h"
 
+
+
 char *__echo(t_command *commad)
 {
 	int i;
@@ -16,7 +18,7 @@ char *__echo(t_command *commad)
 	}
 	else if (commad->options && !ft_strcmp(commad->options, "-n"))
 	{
-		while (i++ < tablen-1)
+		while (i++ < tablen - 1)
 			printf("%s ", commad->args[i]);
 		return NULL;
 	}

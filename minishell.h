@@ -23,7 +23,7 @@
 # define RED_INPUT '<'
 # define RED_PIPE '|'
 # define RED_APPEND ">>"
-# define MINISHELL "\x1b[35mMinishell $\x1b[37m "
+# define MINISHELL "➜ \x1b[35mMinishell $\x1b[37m "
 # define SPACE ' '
 # define FLAG_HYPHEN '-'
 # define REDIRECTIONS ">|<"
