@@ -14,12 +14,6 @@ int	get_len(char *str)
 	else if (str[i] == SINGLE_QUOTE)
 		while (str[++i] != SINGLE_QUOTE)
 			len++;
-	if ((ft_strchr("\"'", str[0])) && ft_strchr("\"'", str[i + 1]))
-	{
-		str[i] = -1;
-		str[i + 1] = -1;
-		return (len + get_len(str + 2));
-	}
 	if (ft_strchr(REDIRECTIONS, str[i]))
 	{
 		len = 1;

@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-char	*str_delete(char *str, char delete)
+char	*str_delete(char *str)
 {
 	char	*ret;
 	int		i;
@@ -11,9 +11,9 @@ char	*str_delete(char *str, char delete)
 	ret = (char *) malloc (ft_strlen(str) + 1);
 	while (str[j])
 	{
-		while (str[j] == delete)
+		while (str[j] && str[j] == -1)
 			j++;
-		ret[i++] = ret[j++];
+		ret[i++] = str[j++];
 	}
 	ret[i] = 0;
 	return (ret);
@@ -44,5 +44,5 @@ char	*check_quotes(char	*str)
 	}
 	if (count1 % 2 != 0 || count2 % 2 != 0)
 		return NULL;
-	return (str_delete(str, -1));
+	return (str_delete(str));
 }
