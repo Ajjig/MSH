@@ -11,10 +11,12 @@ char	*__cd__(t_command *command, t_envlist *lst)
 		user = getenv("USER");
 		chdir("/Users/");
 		ret = chdir(user);
+		if (ret != 0)
+			puts("cd: no such file or directory");
+		return NULL;
 	}
 	else
 		ret = chdir(command -> args[0]);
-
 	wd = getcwd(NULL, 0);
 	if (ret != 0)
 		puts("cd: no such file or directory");
