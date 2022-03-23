@@ -12,14 +12,14 @@ char *__env(t_envlist *lst)
 	return NULL;
 }
 
-t_envlist *__env__init(char **envp) // hadi kat 9ad list
+t_envlist *__env__init(char **envp)
 {
 	int i;
 	t_envlist *lst;
 
 	lst = NULL;
 	i  = 0;
-	if(!envp)
+	if(envp[0] == NULL)
 		return lst;
 	while (envp[i])
 	{

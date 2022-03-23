@@ -45,7 +45,7 @@ void	free_cmd(t_command *command)
 	free(command);
 }
 
-int heredoc(t_command *command)
+int heredoc(t_command *command, t_envlist *lst)
 {
 	char *prompt;
 	int fd[2];
@@ -53,15 +53,15 @@ int heredoc(t_command *command)
 	pipe(fd);
 	while (1)
 	{
-		prompt = readline("heredoc > ");
+		prompt = readline("\x1b[34mheredoc > \x1b[37m");
 		if (!ft_strcmp(command->files->file, prompt))
 			return (free(prompt), close(fd[1]) ,fd[0]);
-		ft_putstr_fd(prompt, fd[1]);
+		ft_putstr_fd(__get_env(prompt, lst), fd[1]);
 		ft_putstr_fd("\n", fd[1]);
 	}
 }
 
-void redirection_handler(t_command *command)
+void redirection_handler(t_command *command, t_envlist *lst)
 {
 	int file_out;
 
@@ -88,12 +88,12 @@ void redirection_handler(t_command *command)
 		}
 		else if (!ft_strcmp(command->redirection, "<<")) // heredoc
 		{
-			file_out = heredoc(command);
+			file_out = heredoc(command, lst);
 			dup2(file_out, 0);
 			close(file_out);
 		}
 		command->files = command->files->next;
-		redirection_handler(command);
+		redirection_handler(command, lst);
 	}
 }
 
@@ -122,7 +122,7 @@ void pipe_handler(t_command *command, t_envlist *lst)
 				close(fd[1]);
 				close(fd[0]);
 			}
-			redirection_handler(tmp);
+			redirection_handler(tmp, lst);
 			__exec__(tmp, lst);
 			exit(0);
 		}
@@ -170,6 +170,7 @@ int	main(int ac, char **av, char **envp)
 	{
 		ac = 0;
 		command = get_next_cmd(lst);
+
 		if (command)
 			command_roots(command, lst);
 		if (command && command -> program != NULL && ft_strcmp(command -> program, "exit") == 0)

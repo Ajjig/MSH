@@ -6,6 +6,8 @@ char **linked_double(t_envlist *lst)
 	t_envlist	*tmp;
 	char	**buff;
 
+	if (!lst)
+		return NULL;
 	len = 0;
 	tmp = lst;
 	while (tmp)
@@ -32,9 +34,7 @@ char *exeve_handler(t_command *command, t_envlist *lst)
 	pid = fork();
 
 	if (pid == 0)
-	{
 		execve(command -> program, command -> execve, buff);
-	}
 	else
 		wait(NULL);
 	return (free(buff), NULL);

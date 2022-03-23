@@ -25,6 +25,8 @@ char	*is_in_list(char *cmd)
 	if (ft_strchr(cmd, '/') && access(cmd, F_OK) != -1)
 		return (ft_strdup(cmd));
 	path = getenv("PATH");
+	if (path == NULL)
+		return (printf("\x1b[31m%s: command not found\n\x1b[37m", cmd) ,NULL);
 	others = ft_split(path, ':');
 	i = 0;
 	while (others[i])
@@ -69,9 +71,9 @@ t_command	*get_cammand(char **buff, int i)
 
 	tmp = i;
 	ai = 0;
-	if (buff[i] == NULL)
-		return (NULL);
 	command = init_cmd(buff);
+	if (command == NULL || !buff || buff[i] == NULL)
+		return (NULL);
 	while (buff[i])
 	{
 		if (buff[i] && i == 1 && !ft_strcmp(buff[i], "-n") && !ft_strcmp(_ECHO, command -> program))

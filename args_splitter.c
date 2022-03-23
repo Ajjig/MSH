@@ -83,6 +83,7 @@ char	**args_splitter(char *str)
 
 	i = 0;
 	j = 0;
+	
 	str = check_quotes(str);
 	if (str == NULL)
 	{

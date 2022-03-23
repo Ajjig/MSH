@@ -6,7 +6,7 @@ char	*__cd__(t_command *command, t_envlist *lst)
 	int		ret;
 	char	*user;
 
-	if (command -> args[0] == NULL || ft_strcmp(command -> args[0], "~") == 0)
+	if (command->args && (command -> args[0] == NULL || ft_strcmp(command -> args[0], "~") == 0))
 	{
 		user = getenv("USER");
 		chdir("/Users/");
@@ -26,4 +26,10 @@ char	*__cd__(t_command *command, t_envlist *lst)
 	}
 	free(wd);
 	return NULL;
+
+	// should handle the commad ==> "cd -"
+	// should handle the commad ==> "~/Desktop"
+
+
+	// retuen
 }

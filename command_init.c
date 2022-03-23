@@ -5,6 +5,8 @@ t_command	*init_cmd(char **buff)
 	int			len;
 	t_command	*command = NULL;
 
+	if (!buff || buff[0] == NULL)
+		return (NULL);
 	len = 0;
 	while (buff[len])
 		len++;
