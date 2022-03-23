@@ -11,6 +11,8 @@ WHITE=$'\x1b[37m
 
 NAME = minishell
 
+INC = minishell.h
+
 SRCS =	minishell.c \
 		get_cmd.c \
 		command_init.c \
@@ -44,11 +46,21 @@ CC = gcc
 
 all: libft $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $(INC)
 	$(CC) $(CFLAGS) -L$(shell brew --prefix readline)/lib $(SRCS) $(LIBNAME) -o $(NAME)
 
 libft:
 	@make -C LIBFT/
 	@echo "LIBFT compiled successfully"
+
+clean:
+	-@rm -fr $(OBJS)
+	-@make clean -C LIBFT/
+
+fclean: clean
+	-@rm -fr $(NAME)
+	-@make fclean -C LIBFT/
+
+re: fclean all
 
 .PHONY: libft $(NAME)
