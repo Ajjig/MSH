@@ -14,7 +14,7 @@ int	get_len(char *str)
 	else if (str[i] == SINGLE_QUOTE)
 		while (str[++i] != SINGLE_QUOTE)
 			len++;
-	if (ft_strchr(REDIRECTIONS, str[i]))
+	else if (ft_strchr(REDIRECTIONS, str[i]))
 	{
 		len = 1;
 		if (str[i] == str[i + 1])
@@ -83,7 +83,6 @@ char	**args_splitter(char *str)
 
 	i = 0;
 	j = 0;
-	
 	str = check_quotes(str);
 	if (str == NULL)
 	{
