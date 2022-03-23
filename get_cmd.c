@@ -63,7 +63,7 @@ char	*args_joiner(char *args, char *new)
 }
 
 
-t_command	*get_cammand(char **buff, int i)
+t_command	*get_cammand(char **buff, int i, t_envlist *lst)
 {
 	t_command	*command;
 	int			ai;
@@ -82,7 +82,7 @@ t_command	*get_cammand(char **buff, int i)
 			command -> args[ai++] = ft_strdup(buff[i]);
 		if (buff[i][0] == RED_PIPE)
 		{
-			command -> next = get_cammand(buff, ++i);
+			command -> next = get_cammand(buff, ++i, lst);
 			break ;
 		}
 		if (ft_strchr(REDIRECTIONS, buff[i][0]))
@@ -93,6 +93,10 @@ t_command	*get_cammand(char **buff, int i)
 		if (command -> program == NULL && ft_strcmp(command -> redirection, "<<"))
 			command -> program = is_in_list(buff[i]);
 		i++;
+	}
+	if (!ft_strcmp(command->redirection, "<<"))
+	{
+		command->heredoc = heredoc(command, lst);
 	}
 	command -> args[ai] = NULL;
 	command -> execve = get_execve(buff, tmp);

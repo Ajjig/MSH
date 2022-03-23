@@ -32,7 +32,7 @@ void right_redirection(t_command *command, int file_out)
 	}
 }
 
-void left_redirection(t_command *command, t_envlist *lst, int file_out)
+void left_redirection(t_command *command, int file_out)
 {
 	if (!ft_strcmp(command->redirection, "<"))
 	{
@@ -43,9 +43,9 @@ void left_redirection(t_command *command, t_envlist *lst, int file_out)
 	}
 	else if (!ft_strcmp(command->redirection, "<<"))
 	{
-		file_out = heredoc(command, lst);
-		dup2(file_out, 0);
-		close(file_out);
+		// file_out = heredoc(command, lst);
+		dup2(command->heredoc, 0);
+		close(command->heredoc);
 	}
 }
 void redirection_handler(t_command *command, t_envlist *lst)
@@ -56,7 +56,7 @@ void redirection_handler(t_command *command, t_envlist *lst)
 	if (command->files != NULL)
 	{
 		right_redirection(command, file_out);
-		left_redirection(command, lst, file_out);
+		left_redirection(command, file_out);
 		command->files = command->files->next;
 		redirection_handler(command, lst);
 	}

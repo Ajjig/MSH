@@ -20,7 +20,7 @@ t_command	*get_next_cmd(t_envlist *lst)
 	buff = args_splitter(read);
 	if (error_checker(buff) == false)
 		return (NULL);
-	command = get_cammand(buff, 0);
+	command = get_cammand(buff, 0, lst);
 	free(read);
 	return command;
 }
