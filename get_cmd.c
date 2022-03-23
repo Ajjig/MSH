@@ -90,7 +90,7 @@ t_command	*get_cammand(char **buff, int i)
 			command -> redirection = ft_strdup(buff[i++]);
 			gen_files(command, buff[i - 1], buff[i]);
 		}
-		if (command -> program == NULL)
+		if (command -> program == NULL && ft_strcmp(command -> redirection, "<<"))
 			command -> program = is_in_list(buff[i]);
 		i++;
 	}
