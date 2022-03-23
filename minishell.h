@@ -107,8 +107,8 @@ bool		error_checker(char **buff);
 char		*__get_env(char *read, t_envlist *lst);
 
 
-void pipe_handler(t_command *command, t_envlist *lst);
-void redirection_handler(t_command *command, t_envlist *lst);
-int heredoc(t_command *command, t_envlist *lst);
+void		pipe_handler(t_command *command, t_envlist *lst);
+void		redirection_handler(t_command *command, t_envlist *lst);
+int			heredoc(t_command *command, t_envlist *lst);
 
 #endif

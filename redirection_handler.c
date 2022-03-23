@@ -37,6 +37,11 @@ void left_redirection(t_command *command, int file_out)
 	if (!ft_strcmp(command->redirection, "<"))
 	{
 		file_out = open(command->files->file, O_RDONLY);
+		if (file_out == -1)
+		{
+			printf("%s: No such file or directory\n", command->files->file);
+			return ;
+		}
 		dup2(file_out, 0);
 		close(file_out);
 
