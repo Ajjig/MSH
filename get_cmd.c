@@ -95,9 +95,7 @@ t_command	*get_cammand(char **buff, int i, t_envlist *lst)
 		i++;
 	}
 	if (!ft_strcmp(command->redirection, "<<"))
-	{
 		command->heredoc = heredoc(command, lst);
-	}
 	command -> args[ai] = NULL;
 	command -> execve = get_execve(buff, tmp);
 	return command;
