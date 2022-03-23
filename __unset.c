@@ -23,7 +23,6 @@ char *__unset(t_command *commad, t_envlist *lst)
 		return NULL;
 	i = 0;
 	tablen = ft_tab_len(commad->args);
-
 	while (i < tablen)
 	{
 		tmp = lst;

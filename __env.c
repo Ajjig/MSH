@@ -24,7 +24,6 @@ t_envlist *__env__init(char **envp)
 	while (envp[i])
 	{
 		ft_lstadd_back(&lst, ft_lstnew(envp[i]));
-		//printf("%s\n", envp[i++]);
 		i++;
 	}
 	return lst;

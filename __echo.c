@@ -1,7 +1,5 @@
 #include "minishell.h"
 
-
-
 char *__echo(t_command *commad)
 {
 	int i;

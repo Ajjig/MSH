@@ -65,7 +65,6 @@ char **export_spliter(t_command *command, int i)
 		out[1] = ft_strdup(ft_strchr(out[1], '=') + 1);
 		free(tmp);
 	}
-
 	return out;
 }
 
@@ -132,6 +131,5 @@ char *__export(t_envlist *lst, t_command *command)
 		free(tab[1]);
 		free(tab);
 	}
-
 	return NULL;
 }

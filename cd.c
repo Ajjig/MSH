@@ -26,10 +26,4 @@ char	*__cd__(t_command *command, t_envlist *lst)
 	}
 	free(wd);
 	return NULL;
-
-	// should handle the commad ==> "cd -"
-	// should handle the commad ==> "~/Desktop"
-
-
-	// retuen
 }
