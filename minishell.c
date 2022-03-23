@@ -85,6 +85,7 @@ void redirection_handler(t_command *command, t_envlist *lst)
 			file_out = open(command->files->file, O_RDONLY);
 			dup2(file_out, 0);
 			close(file_out);
+			
 		}
 		else if (!ft_strcmp(command->redirection, "<<")) // heredoc
 		{
