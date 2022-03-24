@@ -32,13 +32,13 @@ char	*check_quotes(char	*str)
 	{
 		if (str[i] == DOUBLE_QUOTE && count1 % 2 == 0)
 		{
-			if (ft_strchr("\"'", str[i + 1]))
+			// if (ft_strchr("\"'", str[i + 1]))
 				str[i] = -1;
 			count2++;
 		}
 		if (str[i] == SINGLE_QUOTE && count2 % 2 == 0)
 		{
-			if (ft_strchr("\"'", str[i + 1]))
+			// if (ft_strchr("\"'", str[i + 1]))
 				str[i] = -1;
 			count1++;
 		}
