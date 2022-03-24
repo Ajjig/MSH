@@ -22,7 +22,7 @@ char	*is_in_list(char *cmd)
 	while (i < 7)
 		if (ft_strcmp(all[i++], cmd) == 0)
 			return (ft_strdup(all[--i]));
-	if (ft_strchr(cmd, '/') && access(cmd, F_OK) != -1)
+	if (ft_strchr(cmd, '/'))
 		return (ft_strdup(cmd));
 	path = getenv("PATH"); // TODO: use envlist
 	if (path == NULL)

@@ -6,6 +6,8 @@ void	__exec__(t_command *command, t_envlist *lst)
 
 	if (command -> program == NULL)
 		return ;
+	else if (access(command -> program, F_OK) == -1)
+		printf("%s: file/program not found\n", command -> program);
 	else if (ft_strcmp(command -> program, _CD) == 0)
 		output = __cd__(command, lst);
 	else if (ft_strcmp(command -> program, _PWD) == 0)
@@ -19,7 +21,5 @@ void	__exec__(t_command *command, t_envlist *lst)
 	else if (ft_strcmp(command -> program, _UNSET) == 0)
 		output = __unset(command, lst);
 	else if (command -> program)
-	{
 		exeve_handler(command, lst);
-	}
 }
