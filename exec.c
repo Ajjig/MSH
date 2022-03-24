@@ -6,7 +6,7 @@ void	__exec__(t_command *command, t_envlist *lst)
 
 	if (command -> program == NULL)
 		return ;
-	else if (access(command -> program, F_OK) == -1)
+	else if (ft_strchr(command -> program, '/') && access(command -> program, F_OK) == -1)
 		printf("%s: file/program not found\n", command -> program);
 	else if (ft_strcmp(command -> program, _CD) == 0)
 		output = __cd__(command, lst);
