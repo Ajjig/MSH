@@ -1,10 +1,9 @@
 #include "minishell.h"
 
-char	*__cwd__(t_command *command)
+int	__cwd__(void)
 {
 	char	*cwd;
 
-	command += 0;
 	cwd = getcwd(NULL, 0);
 	if (!cwd)
 	{
@@ -13,5 +12,5 @@ char	*__cwd__(t_command *command)
 	}
 	ft_putendl_fd(cwd, STDOUT_FILENO);
 	free(cwd);
-	return cwd;
+	return 0;
 }

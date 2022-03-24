@@ -63,6 +63,7 @@ typedef struct s_command
 	int					flags;
 	int					is_append;
 	int					heredoc;
+	int					exit_status;
 
 }				t_command;
 
@@ -79,17 +80,17 @@ typedef struct s_envlist // linked lst
 t_command	*get_cammand(char **buff, int i, t_envlist *lst);
 t_command	*init_cmd(char **buff);
 void		free_cmd(t_command *command);
-char		*__cd__(t_command *command, t_envlist *lst);
+int			__cd__(t_command *command, t_envlist *lst);
 void		__exec__(t_command *command, t_envlist *lst);
-char		*__cwd__(t_command *commad);
+int			__cwd__(void);
 char		*__next__(char *str);
 char		**args_splitter(char *s);
 
 
-char		*__echo(t_command *commad);
+int			__echo(t_command *commad);
 t_envlist	*__env__init(char **envp);
-char		*__env(t_envlist *lst);
-char		*__export(t_envlist *lst, t_command *command);
+int			__env(t_envlist *lst);
+int			__export(t_envlist *lst, t_command *command);
 
 t_envlist	*ft_lstnew(char *s);
 t_envlist	*ft_lstlast(t_envlist *lst);
@@ -98,7 +99,7 @@ void		ft_lstadd_back(t_envlist **lst, t_envlist *new);
 char		*exeve_handler(t_command *command, t_envlist *lst);
 int			signal_handler();
 int			ft_tab_len(char **tab);
-char		*__unset(t_command *commad, t_envlist *lst);
+int			__unset(t_command *commad, t_envlist *lst);
 char		**ft_split_smart(char const *s, char c);
 char		*check_quotes(char	*str);
 void		gen_files(t_command *command, char *red, char *file);

@@ -72,6 +72,7 @@ int	main(int ac, char **av, char **envp)
 
 		if (command)
 			command_roots(command, lst);
+		// printf("exit status ==>> %d\n", command->exit_status);
 		if (command && command -> program != NULL && ft_strcmp(command -> program, "exit") == 0)
 		{
 			free_cmd(command);

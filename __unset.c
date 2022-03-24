@@ -13,14 +13,14 @@ void unset_utils(t_envlist *lst, char *tab)
 	}
 }
 
-char *__unset(t_command *commad, t_envlist *lst)
+int __unset(t_command *commad, t_envlist *lst)
 {
 	int tablen;
 	int i;
 	t_envlist *tmp;
 
 	if (!commad->args)
-		return NULL;
+		return 1;
 	i = 0;
 	tablen = ft_tab_len(commad->args);
 	while (i < tablen)
@@ -29,5 +29,5 @@ char *__unset(t_command *commad, t_envlist *lst)
 		unset_utils(tmp, commad->args[i]);
 		i++;
 	}
-	return NULL;
+	return 0;
 }

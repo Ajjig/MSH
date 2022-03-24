@@ -1,15 +1,15 @@
 #include "minishell.h"
 
-char *__env(t_envlist *lst)
+int	__env(t_envlist *lst)
 {
 	if (!lst)
-		return NULL;
+		return 1;
 	while (lst != NULL)
 	{
 		printf("%s=%s\n", lst->var_name, lst->var_content);
 		lst = lst->next;
 	}
-	return NULL;
+	return 0;
 }
 
 t_envlist *__env__init(char **envp)

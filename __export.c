@@ -95,19 +95,19 @@ void __export_utils(char **tab, t_envlist *lst, t_command *command)
 	ft_lstadd_back(&lst, ft_lstnew_2(tab));
 }
 
-char *export_printer(t_envlist *lst)
+int	export_printer(t_envlist *lst)
 {
 	if (!lst)
-		return NULL;
+		return 1;
 	while (lst != NULL)
 	{
 		printf("declare -x %s=\"%s\"\n", lst->var_name, lst->var_content);
 		lst = lst->next;
 	}
-	return NULL;
+	return 0;
 }
 
-char *__export(t_envlist *lst, t_command *command)
+int	__export(t_envlist *lst, t_command *command)
 {
 	char **tab;
 	int tablen;
@@ -123,7 +123,7 @@ char *__export(t_envlist *lst, t_command *command)
 	{
 		tab = export_spliter(command, i);
 		if (!tab)
-			return NULL;
+			return 1;
 		__export_utils(tab, lst, command);
 		tablen--;
 		i++;
@@ -131,5 +131,5 @@ char *__export(t_envlist *lst, t_command *command)
 		free(tab[1]);
 		free(tab);
 	}
-	return NULL;
+	return 0;
 }

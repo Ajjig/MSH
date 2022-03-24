@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-char *__echo(t_command *commad)
+int	__echo(t_command *commad)
 {
 	int i;
 	int tablen;
@@ -26,5 +26,5 @@ char *__echo(t_command *commad)
 		if (tablen >= 1)
 			printf("%s\n", commad->args[i]);
 	}
-	return NULL;
+	return 0;
 }
