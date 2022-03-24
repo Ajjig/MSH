@@ -48,7 +48,9 @@ typedef struct s_files
 	bool			is_append;
 }				t_files;
 
-int  g_exites;
+int	g_exites;
+int	is_running;
+
 typedef struct s_command
 {
 	char				*redirection;

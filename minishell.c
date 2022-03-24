@@ -47,10 +47,10 @@ void	free_cmd(t_command *command)
 
 void command_roots(t_command *command, t_envlist *lst)
 {
+	is_running = 1;
 	if (command->next || command->redirection)
 	{
-		signal(SIGINT, SIG_DFL);
-		signal(SIGQUIT, SIG_DFL);
+		is_running = 0;
 		pipe_handler(command, lst);
 	}
 	else
@@ -72,7 +72,7 @@ int	main(int ac, char **av, char **envp)
 
 		if (command)
 			command_roots(command, lst);
-		printf("exit status ==>> %d\n", g_exites);
+		// printf("exit status ==>> %d\n", g_exites);
 		if (command && command -> program != NULL && ft_strcmp(command -> program, "exit") == 0)
 		{
 			free_cmd(command);
