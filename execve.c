@@ -40,11 +40,11 @@ char *exeve_handler(t_command *command, t_envlist *lst)
 	if (WIFSIGNALED(exits))
 	{
 		if (WTERMSIG(exits) != 13)
-			g_exites = 128 + WTERMSIG(exits);
+			g_variable.g_exites = 128 + WTERMSIG(exits);
 		if (WTERMSIG(exits) == SIGQUIT)
 			printf(" Quit\n");
 	}
 	else
-		g_exites = WEXITSTATUS(exits);
+		g_variable.g_exites = WEXITSTATUS(exits);
 	return (free(buff), NULL);
 }

@@ -3,8 +3,8 @@
 void cltr_c(int sig)
 {
 	printf("\n");
-	g_exites = 128 + sig;
-	if (!is_running)
+	g_variable.g_exites = 128 + sig;
+	if (!g_variable.is_running)
 	{
 		rl_replace_line("", 0);
 		rl_on_new_line();

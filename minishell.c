@@ -8,7 +8,10 @@ t_command	*get_next_cmd(t_envlist *lst)
 	int			i;
 
 	i = 0;
-	read = readline(MINISHELL);
+	if(g_variable.g_exites != 0)
+		read = readline(MINISHELL_RED);
+	else
+		read = readline(MINISHELL_GREEN);
 	if (!read)
 	{
 		puts("exit");
@@ -47,14 +50,23 @@ void	free_cmd(t_command *command)
 
 void command_roots(t_command *command, t_envlist *lst)
 {
-	is_running = 1;
+	g_variable.is_running = 1;
 	if (command->next || command->redirection)
-	{
-		is_running = 0;
 		pipe_handler(command, lst);
-	}
 	else
 		__exec__(command, lst);
+	g_variable.is_running = 0;
+}
+
+void __exit(t_command *command)
+{
+	if (command && command -> program != NULL && ft_strcmp(command -> program, "exit") == 0)
+	{
+		write(1, "exit\n", 5);
+		free_cmd(command);
+		exit(1);
+	}
+	return ;
 }
 
 int	main(int ac, char **av, char **envp)
@@ -69,16 +81,12 @@ int	main(int ac, char **av, char **envp)
 	{
 		ac = 0;
 		command = get_next_cmd(lst);
-
+		__exit(command);
 		if (command)
 			command_roots(command, lst);
-		// printf("exit status ==>> %d\n", g_exites);
-		if (command && command -> program != NULL && ft_strcmp(command -> program, "exit") == 0)
-		{
-			free_cmd(command);
-			exit(0);
-		}
 		free_cmd(command);
 		command = NULL;
 	}
+	rl_clear_history();
+	return 0;
 }

@@ -23,7 +23,8 @@
 # define RED_INPUT '<'
 # define RED_PIPE '|'
 # define RED_APPEND ">>"
-# define MINISHELL "➜ \x1b[35mMinishell $\x1b[37m "
+# define MINISHELL_GREEN "\x1b[32m➜  \033[1mMINISHELL \x1b[37m"
+# define MINISHELL_RED "\x1b[31m➜  \x1b[32m\033[1mMINISHELL \x1b[37m"
 # define SPACE ' '
 # define FLAG_HYPHEN '-'
 # define REDIRECTIONS ">|<"
@@ -48,8 +49,12 @@ typedef struct s_files
 	bool			is_append;
 }				t_files;
 
-int	g_exites;
-int	is_running;
+struct g_minishell
+{
+	int	g_exites;
+	int	is_running;
+}	g_variable;
+
 
 typedef struct s_command
 {
@@ -83,6 +88,7 @@ void		free_cmd(t_command *command);
 int			__cd__(t_command *command, t_envlist *lst);
 void		__exec__(t_command *command, t_envlist *lst);
 int			__cwd__(void);
+void		__exit(t_command *command);
 char		*__next__(char *str);
 char		**args_splitter(char *s);
 
