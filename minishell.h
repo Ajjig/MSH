@@ -48,7 +48,7 @@ typedef struct s_files
 	bool			is_append;
 }				t_files;
 
-
+int  g_exites;
 typedef struct s_command
 {
 	char				*redirection;
@@ -63,8 +63,6 @@ typedef struct s_command
 	int					flags;
 	int					is_append;
 	int					heredoc;
-	int					exit_status;
-
 }				t_command;
 
 typedef struct s_envlist // linked lst
