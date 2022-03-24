@@ -1,0 +1,8 @@
+- string'an other string'"last string -> "stringan other stringlast string"
+- ./ls -> should not be made /bin/./ls
+- echo $? -> echo exit status
+- $var -> stop var identifier at first non valid character
+- not_valid_command not_valid_command2 not_valid_command3 should only try to execute first command
+- fix multiple successive pipes ||| | | |
+- ignore <>| inside [d]quotes
+

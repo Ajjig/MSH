@@ -20,7 +20,10 @@ t_envlist *__env__init(char **envp)
 	lst = NULL;
 	i  = 0;
 	if(envp[0] == NULL)
+	{
+		ft_lstadd_back(&lst, ft_lstnew("PATH=/usr/local/bin:/bin:/usr/bin:."));
 		return lst;
+	}
 	while (envp[i])
 	{
 		ft_lstadd_back(&lst, ft_lstnew(envp[i]));

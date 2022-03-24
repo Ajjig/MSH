@@ -52,7 +52,7 @@ char **export_spliter(t_command *command, int i)
 	{
 		command->is_append = 0;
 		out = ft_split_smart(command->args[i], '=');
-		if (!check_exp_arg(out[0]))
+		if (!ft_isalpha(out[0][0]) && out[0][0] != '_')
 			return (printf("export: `%s' : not a valid identifier\n", out[0]), NULL);
 		else if (!ft_strcmp(command->args[i], out[0]))
 			return NULL;

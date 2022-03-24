@@ -40,7 +40,7 @@ OBJS =	${SRC:.c=.o}
 
 LIBNAME = LIBFT/libft.a
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g
 CFLAGS += -lreadline
 CFLAGS += -I$(shell brew --prefix readline)/include
 ANIMATION = curl -s "http://artscene.textfiles.com/vt100/monorail.vt" | pv -q -L 6600

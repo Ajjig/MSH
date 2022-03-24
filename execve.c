@@ -34,7 +34,7 @@ char *exeve_handler(t_command *command, t_envlist *lst)
 	pid = fork();
 
 	if (pid == 0)
-		execve(command -> program, command -> execve, buff);
+		execve(command -> program, command -> execve, buff); // TODO: fix command->execve[0] (stays same as given by user)
 	else
 		wait(NULL);
 	return (free(buff), NULL);

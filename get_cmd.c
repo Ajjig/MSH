@@ -24,7 +24,7 @@ char	*is_in_list(char *cmd)
 			return (ft_strdup(all[--i]));
 	if (ft_strchr(cmd, '/') && access(cmd, F_OK) != -1)
 		return (ft_strdup(cmd));
-	path = getenv("PATH");
+	path = getenv("PATH"); // TODO: use envlist
 	if (path == NULL)
 		return (printf("\x1b[31m%s: command not found\n\x1b[37m", cmd) ,NULL);
 	others = ft_split(path, ':');
@@ -78,7 +78,9 @@ t_command	*get_cammand(char **buff, int i, t_envlist *lst)
 	{
 		if (buff[i] && i == 1 && !ft_strcmp(buff[i], "-n") && !ft_strcmp(_ECHO, command -> program))
 			command -> options = ft_strdup(buff[i++]);
-		if (i > 0)
+		if (!buff[i])
+			break;
+		if (i > 0 && !ft_strchr(REDIRECTIONS, buff[i][0]))
 			command -> args[ai++] = ft_strdup(buff[i]);
 		if (buff[i][0] == RED_PIPE)
 		{

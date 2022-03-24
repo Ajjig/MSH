@@ -40,7 +40,7 @@ void left_redirection(t_command *command, int file_out)
 		if (file_out == -1)
 		{
 			printf("%s: No such file or directory\n", command->files->file);
-			return ;
+			exit(1);
 		}
 		dup2(file_out, 0);
 		close(file_out);

@@ -12,7 +12,7 @@ void	put_error(char **buff, int x)
 	write(1, "    ", 4);
 	while (len-- > 4)
 		write(1, "\x1b[32m~", ft_strlen("\x1b[32m~"));
-	printf("\x1b[31m~^\nInvalid error:\n\x1b[37m\n");
+	printf("\x1b[31m~^\nInvalid syntax:\n\x1b[37m\n");
 }
 
 bool	is_redirection(char *str)
