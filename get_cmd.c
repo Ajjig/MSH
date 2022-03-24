@@ -78,21 +78,19 @@ t_command	*get_cammand(char **buff, int i, t_envlist *lst)
 	{
 		if (buff[i] && i == 1 && !ft_strcmp(buff[i], "-n") && !ft_strcmp(_ECHO, command -> program))
 			command -> options = ft_strdup(buff[i++]);
-		if (!buff[i])
-			break;
-		if (i > 0 && !ft_strchr(REDIRECTIONS, buff[i][0]))
+		if (buff[i] && i > 0 && !ft_strchr(REDIRECTIONS, buff[i][0]))
 			command -> args[ai++] = ft_strdup(buff[i]);
-		if (buff[i][0] == RED_PIPE)
+		if (buff[i] && buff[i][0] == RED_PIPE)
 		{
 			command -> next = get_cammand(buff, ++i, lst);
 			break ;
 		}
-		if (ft_strchr(REDIRECTIONS, buff[i][0]))
+		if (buff[i] && ft_strchr(REDIRECTIONS, buff[i][0]))
 		{
 			command -> redirection = ft_strdup(buff[i++]);
 			gen_files(command, buff[i - 1], buff[i]);
 		}
-		else if (command -> program == NULL)
+		else if (buff[i] && command -> program == NULL)
 			command -> program = is_in_list(buff[i]);
 		i++;
 	}
