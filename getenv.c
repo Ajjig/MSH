@@ -22,7 +22,7 @@ char	*cutter(char *tofind)
 
 	i = 0;
 	len = 0;
-	while (tofind[len] && !ft_strchr(WHITE_SPACES, tofind[len]) && tofind[len] != '\'' && tofind[len] != '"')
+	while (tofind[len] && (ft_isalnum(tofind[len]) || tofind[len] == '_'))
 		len++;
 	ret = (char *) malloc (len + 1);
 	while (i < len)
