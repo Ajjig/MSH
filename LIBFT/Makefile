@@ -6,7 +6,7 @@
 #    By: iidkhebb <iidkhebb@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/10 15:31:37 by majjig            #+#    #+#              #
-#    Updated: 2022/03/04 18:22:09 by iidkhebb         ###   ########.fr        #
+#    Updated: 2022/03/24 01:19:07 by iidkhebb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ SRCS =  ft_calloc.c \
 		ft_putnbr_fd.c \
 		ft_strcmp.c
 
-BNS = 
+BNS =
 
 OBJS = ${SRCS:.c=.o}
 
@@ -63,8 +63,10 @@ bonus: $(NAME)
 $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) $(SRCS) $(BNS)
 	@ar rc $(NAME) $(OBJS)
+	clear
 lib:
 	@ar rc $(NAME) $(OBJS)
+	clear
 
 clean:
 	@rm -f $(OBJS)

@@ -43,19 +43,29 @@ LIBNAME = LIBFT/libft.a
 CFLAGS = -Wall -Werror -Wextra
 CFLAGS += -lreadline
 CFLAGS += -I$(shell brew --prefix readline)/include
-
+ANIMATION = curl -s "http://artscene.textfiles.com/vt100/monorail.vt" | pv -q -L 6600
 CC = gcc
 
-all: libft $(NAME)
+all: display libft $(NAME)
 
 $(NAME): $(OBJS) $(INC)
 	$(CC) $(CFLAGS) -L$(shell brew --prefix readline)/lib $(SRCS) $(LIBNAME) -o $(NAME)
 
 libft:
 	@make -C LIBFT/
-	@echo "LIBFT compiled successfully"
+	@echo "\x1b[33mLIBFT compiled successfully\x1b[37m"
+display:
+	-@$(shell brew install readline)
+	-@$(shell brew install pv)
 
-clean:
+	clear
+	@echo "\x1b[36m	__  __  ___  _   _  ___  ____   _   _  _____  _      _      "
+	@echo "	|  \/  ||_ _|| \ | ||_ _|/ ___| | | | || ____|| |    | |"
+	@echo "	| |\/| | | | |  \| | | | \___ \ | |_| ||  _|  | |    | |"
+	@echo "	| |  | | | | | |\  | | |  ___) ||  _  || |___ | |___ | |___"
+	@echo "	|_|  |_||___||_| \_||___||____/ |_| |_||_____||_____||_____|"
+
+clean:v
 	-@rm -fr $(OBJS)
 	-@make clean -C LIBFT/
 
