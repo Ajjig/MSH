@@ -49,12 +49,11 @@ typedef struct s_files
 	bool			is_append;
 }				t_files;
 
-struct g_minishell
+struct s_minishell
 {
 	int	g_exites;
 	int	is_running;
 }	g_variable;
-
 
 typedef struct s_command
 {
@@ -91,19 +90,15 @@ int			__cwd__(void);
 void		__exit(t_command *command);
 char		*__next__(char *str);
 char		**args_splitter(char *s);
-
-
 int			__echo(t_command *commad);
 t_envlist	*__env__init(char **envp);
 int			__env(t_envlist *lst);
 int			__export(t_envlist *lst, t_command *command);
-
 t_envlist	*ft_lstnew(char *s);
 t_envlist	*ft_lstlast(t_envlist *lst);
 void		ft_lstadd_back(t_envlist **lst, t_envlist *new);
-
 char		*exeve_handler(t_command *command, t_envlist *lst);
-int			signal_handler();
+int			signal_handler(void);
 int			ft_tab_len(char **tab);
 int			__unset(t_command *commad, t_envlist *lst);
 char		**ft_split_smart(char const *s, char c);
@@ -112,8 +107,7 @@ void		gen_files(t_command *command, char *red, char *file);
 char		**get_execve(char **buff, int i);
 bool		error_checker(char **buff);
 char		*__get_env(char *read, t_envlist *lst);
-
-
+int			export_printer(t_envlist *lst);
 void		pipe_handler(t_command *command, t_envlist *lst);
 void		redirection_handler(t_command *command, t_envlist *lst);
 int			heredoc(t_command *command, t_envlist *lst);

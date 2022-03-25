@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipe_handler.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: iidkhebb <iidkhebb@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/25 01:04:24 by iidkhebb          #+#    #+#             */
+/*   Updated: 2022/03/25 01:10:04 by iidkhebb         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-void pipe_close(t_command *tmp, int fd0, int fd1)
+void	pipe_close(t_command *tmp, int fd0, int fd1)
 {
 	if (tmp->next)
 	{
@@ -10,10 +22,17 @@ void pipe_close(t_command *tmp, int fd0, int fd1)
 	}
 }
 
-void pipe_utils(t_command *tmp, t_envlist *lst)
+void	std_out_close(int save_stdout)
 {
-	int pid;
-	int fd[2];
+	close(0);
+	dup2(save_stdout, 0);
+	close(save_stdout);
+}
+
+void	pipe_utils(t_command *tmp, t_envlist *lst)
+{
+	int	pid;
+	int	fd[2];
 
 	if (tmp->next)
 		pipe(fd);
@@ -37,19 +56,10 @@ void pipe_utils(t_command *tmp, t_envlist *lst)
 	pipe_close(tmp, fd[0], fd[1]);
 }
 
-void pipe_handler(t_command *command, t_envlist *lst)
+void	status_handler(t_command *tmp)
 {
-	int save_stdout = dup(0);
-	t_command *tmp;
-	int		exits;
+	int			exits;
 
-	tmp = command;
-	while (tmp)
-	{
-		pipe_utils(tmp, lst);
-		tmp = tmp->next;
-	}
-	tmp = command;
 	while (tmp)
 	{
 		wait(&exits);
@@ -64,7 +74,21 @@ void pipe_handler(t_command *command, t_envlist *lst)
 			g_variable.g_exites = WEXITSTATUS(exits);
 		tmp = tmp->next;
 	}
-	close(0);
-	dup2(save_stdout, 0);
-	close(save_stdout);
+}
+
+void	pipe_handler(t_command *command, t_envlist *lst)
+{
+	int			save_stdout;
+	t_command	*tmp;
+
+	save_stdout = dup(0);
+	tmp = command;
+	while (tmp)
+	{
+		pipe_utils(tmp, lst);
+		tmp = tmp->next;
+	}
+	tmp = command;
+	status_handler(tmp);
+	std_out_close(save_stdout);
 }

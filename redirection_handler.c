@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   redirection_handler.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: iidkhebb <iidkhebb@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/25 01:03:31 by iidkhebb          #+#    #+#             */
+/*   Updated: 2022/03/25 01:04:15 by iidkhebb         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-int heredoc(t_command *command, t_envlist *lst)
+int	heredoc(t_command *command, t_envlist *lst)
 {
-	char *prompt;
-	int fd[2];
+	char	*prompt;
+	int		fd[2];
 
 	pipe(fd);
 	while (1)
@@ -16,7 +28,7 @@ int heredoc(t_command *command, t_envlist *lst)
 	}
 }
 
-void right_redirection(t_command *command, int file_out)
+void	right_redirection(t_command *command, int file_out)
 {
 	if (!ft_strcmp(command->redirection, ">"))
 	{
@@ -26,13 +38,14 @@ void right_redirection(t_command *command, int file_out)
 	}
 	else if (!ft_strcmp(command->redirection, ">>"))
 	{
-		file_out = open(command->files->file, O_CREAT | O_RDWR | O_APPEND, 0666);
+		file_out = open(command->files->file, O_CREAT \
+		| O_RDWR | O_APPEND, 0666);
 		dup2(file_out, 1);
 		close(file_out);
 	}
 }
 
-void left_redirection(t_command *command, int file_out)
+void	left_redirection(t_command *command, int file_out)
 {
 	if (!ft_strcmp(command->redirection, "<"))
 	{
@@ -44,7 +57,6 @@ void left_redirection(t_command *command, int file_out)
 		}
 		dup2(file_out, 0);
 		close(file_out);
-
 	}
 	else if (!ft_strcmp(command->redirection, "<<"))
 	{
@@ -52,9 +64,10 @@ void left_redirection(t_command *command, int file_out)
 		close(command->heredoc);
 	}
 }
-void redirection_handler(t_command *command, t_envlist *lst)
+
+void	redirection_handler(t_command *command, t_envlist *lst)
 {
-	int file_out;
+	int	file_out;
 
 	file_out = 0;
 	if (command->files != NULL)
