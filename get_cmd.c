@@ -6,7 +6,7 @@
 /*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 01:43:42 by majjig            #+#    #+#             */
-/*   Updated: 2022/03/25 02:57:18 by majjig           ###   ########.fr       */
+/*   Updated: 2022/03/25 03:12:43 by majjig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,25 +30,16 @@ char	*path_joiner(char *path, char *cmd)
 	return (ret);
 }
 
-char	*is_in_list(char *cmd)
+char	*is_in_list(char *cmd, char **others, char *path, int i)
 {
-	static char	*all[] = {"echo", "cd", "pwd",
-		"export", "unset", "env", "exit"};
-	char		**others;
-	char		*path;
-	int			i;
-
-	i = 0;
-	while (i < 7)
-		if (ft_strcmp(all[i++], cmd) == 0)
-			return (ft_strdup(all[--i]));
+	if (is_builtin(cmd))
+		return (ft_strdup(is_builtin(cmd)));
 	if (ft_strchr(cmd, '/'))
 		return (ft_strdup(cmd));
 	path = getenv("PATH");
 	if (path == NULL)
 		return (set_error(cmd), NULL);
 	others = ft_split(path, ':');
-	i = 0;
 	while (others[i])
 	{
 		path = path_joiner(others[i++], cmd);
@@ -102,8 +93,8 @@ t_command	*get_cammand(char **buff, int i, int tmp, t_envlist *lst)
 			command -> redirection = ft_strdup(buff[i++]);
 			gen_files(command, buff[i - 1], buff[i]);
 		}
-		else if (buff[i] && command -> program == NULL && ++i)
-			command -> program = is_in_list(buff[i]);
+		else if (buff[i] && command -> program == NULL)
+			command -> program = is_in_list(buff[i], NULL, NULL, 0);
 		i++;
 	}
 	if (!ft_strcmp(command->redirection, "<<"))
