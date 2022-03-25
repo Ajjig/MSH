@@ -6,7 +6,7 @@
 /*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 01:18:10 by majjig            #+#    #+#             */
-/*   Updated: 2022/03/25 03:59:05 by majjig           ###   ########.fr       */
+/*   Updated: 2022/03/25 04:19:04 by majjig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ char	**args_splitter(char *str, int i, int j)
 		if (str[i] == SINGLE_QUOTE || str[i] == DOUBLE_QUOTE)
 			i += 2;
 		i += ft_strlen(ret[j]);
-		while ((str[i] && !ft_strchr(WHITE_SPACES, str[i])) || j++ < 0)
+		while ((str[i] && !ft_strchr(WHITE_SPACES, str[i]) && !ft_strchr(REDIRECTIONS, str[i])) || j++ < 0)
 		{
 			tmp = trimmer(str + i);
 			ret[j] = ft_strjoin(ret[j], tmp);

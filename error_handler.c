@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iidkhebb <iidkhebb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 01:24:42 by iidkhebb          #+#    #+#             */
-/*   Updated: 2022/03/25 01:26:16 by iidkhebb         ###   ########.fr       */
+/*   Updated: 2022/03/25 04:17:29 by majjig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,9 @@ void	put_error(char **buff, int x)
 
 bool	is_redirection(char *str)
 {
-	return (!ft_strcmp(str, RED_APPEND) || !ft_strcmp(str, ">") || \
-		!ft_strcmp(str, "|") || !ft_strcmp(str, "<"));
+	return (!ft_strcmp(str, RED_APPEND) || !ft_strcmp(str, ">") ||
+		!ft_strcmp(str, "|") || !ft_strcmp(str, "<") || !ft_strcmp(str, ">>") ||
+		!ft_strcmp(str, "<<") || !ft_strcmp(str, "||"));
 }
 
 bool	error_checker(char **buff)
@@ -49,8 +50,8 @@ bool	error_checker(char **buff)
 	while (buff[i])
 	{
 		if (!ft_strcmp(buff[i], "&&") || !ft_strcmp(buff[i], "||"))
-			return (printf("\x1b[31mError:\n\tCompile bonus part to\
-			use \"%s\"\x1b[37m\n\n", buff[i]), false);
+			return (printf("\x1b[31mError:\n\tCompile bonus \
+			part to use \"%s\"\x1b[37m\n\n", buff[i]), false);
 		if (is_redirection(buff[i]) && buff[i + 1] == NULL)
 			return (put_error(buff, i + 1), false);
 		if (is_redirection(buff[i]) && is_redirection(buff[i + 1]) \
