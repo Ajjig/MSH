@@ -6,7 +6,7 @@
 /*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 01:38:16 by majjig            #+#    #+#             */
-/*   Updated: 2022/03/25 20:01:53 by majjig           ###   ########.fr       */
+/*   Updated: 2022/03/25 21:18:54 by majjig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void		__exec__(t_command *command, t_envlist *lst);
 int			__cwd__(void);
 void		__exit(t_command *command);
 char		*__next__(char *str);
-char		**args_splitter(char *s, int i, int j);
+char		**args_splitter(char **ret, char *s, int i, int j);
 int			__echo(t_command *commad);
 t_envlist	*__env__init(char **envp);
 int			__env(t_envlist *lst);

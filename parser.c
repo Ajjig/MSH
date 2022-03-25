@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/25 21:20:20 by majjig            #+#    #+#             */
+/*   Updated: 2022/03/25 21:20:30 by majjig           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-void	parser(t_command *command, char **buff,  int *i, int *ai)
+void	parser(t_command *command, char **buff, int *i, int *ai)
 {
 	if (buff[*i] && *i == 1 && !ft_strcmp(buff[*i], "-n")
 		&& !ft_strcmp(_ECHO, command -> program))

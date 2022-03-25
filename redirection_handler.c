@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection_handler.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iidkhebb <iidkhebb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 01:03:31 by iidkhebb          #+#    #+#             */
-/*   Updated: 2022/03/25 01:04:15 by iidkhebb         ###   ########.fr       */
+/*   Updated: 2022/03/25 21:20:53 by majjig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	heredoc(t_command *command, t_envlist *lst)
 	{
 		prompt = readline("\x1b[34mheredoc > \x1b[37m");
 		if (!prompt || !ft_strcmp(command->files->file, prompt))
-			return (free(prompt), close(fd[1]) ,fd[0]);
+			return (free(prompt), close(fd[1]), fd[0]);
 		ft_putstr_fd(__get_env(prompt, lst), fd[1]);
 		ft_putstr_fd("\n", fd[1]);
 	}

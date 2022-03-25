@@ -6,7 +6,7 @@
 /*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 01:18:10 by majjig            #+#    #+#             */
-/*   Updated: 2022/03/25 20:55:19 by majjig           ###   ########.fr       */
+/*   Updated: 2022/03/25 21:29:54 by majjig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,9 +115,8 @@ static int	count_words(char *str)
 	return (words);
 }
 
-char	**args_splitter(char *str, int i, int j)
+char	**args_splitter(char **ret, char *str, int i, int j)
 {
-	char	**ret;
 	char	*tmp;
 
 	if (check_quotes(str) == 0)
@@ -130,7 +129,8 @@ char	**args_splitter(char *str, int i, int j)
 		if (str[i] == SINGLE_QUOTE || str[i] == DOUBLE_QUOTE)
 			i += 2;
 		i += ft_strlen(ret[j]);
-		while ((str[i] && !is_redirection(ret[j]) && !ft_strchr(WHITE_SPACES, str[i]) && !ft_strchr(REDIRECTIONS, str[i])) || j++ < 0)
+		while ((str[i] && !is_redirection(ret[j])
+				&& !ft_strchr(" \t\v\r\f>|<", str[i])) || j++ < 0)
 		{
 			tmp = trimmer(str + i);
 			ret[j] = strjoin_free(ret[j], tmp);

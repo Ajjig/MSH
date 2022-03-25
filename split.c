@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iidkhebb <iidkhebb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 16:05:13 by majjig            #+#    #+#             */
-/*   Updated: 2022/03/25 01:27:44 by iidkhebb         ###   ########.fr       */
+/*   Updated: 2022/03/25 21:23:48 by majjig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,6 @@ static char	*ft_alloc_fill(char *src, char c)
 	}
 	dest[i] = 0;
 	return (dest);
-}
-
-static int	ft_check_is_alloc(char **str, int j)
-{
-	if (str[j] == NULL)
-	{
-		while (j)
-			free(str[--j]);
-		free(str);
-		return (0);
-	}
-	return (1);
 }
 
 static char	*ft_alloc_fill_2(char *src, char c)
@@ -82,8 +70,6 @@ char	**ft_split_smart(char const *s, char c)
 		if (*s != c)
 		{
 			str[j] = ft_alloc_fill((char *) s, c);
-			if (!(ft_check_is_alloc(str, j++)))
-				return (NULL);
 			while (*(s + 1) && *(s + 1) != c)
 				s++;
 		}
@@ -91,12 +77,9 @@ char	**ft_split_smart(char const *s, char c)
 		{
 			s++;
 			str[j] = ft_alloc_fill_2((char *) s, c);
-			if (!(ft_check_is_alloc(str, j++)))
-				return (NULL);
 			break ;
 		}
 		s++;
 	}
-	str[j] = NULL;
-	return (str);
+	return (str[j] = NULL, str);
 }

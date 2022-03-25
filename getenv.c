@@ -6,7 +6,7 @@
 /*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 01:15:03 by iidkhebb          #+#    #+#             */
-/*   Updated: 2022/03/25 04:50:26 by majjig           ###   ########.fr       */
+/*   Updated: 2022/03/25 21:13:54 by majjig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ char	*cutter(char *tofind)
 
 	i = 0;
 	len = 0;
-	while (tofind[len] && (ft_isalnum(tofind[len]) || tofind[len] == '_' || tofind[len] == '?'))
+	while (tofind[len] && (ft_isalnum(tofind[len])
+			|| tofind[len] == '_' || tofind[len] == '?'))
 		len++;
 	ret = (char *) malloc (len + 1);
 	while (i < len)

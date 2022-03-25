@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   list_lib.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/25 21:14:37 by majjig            #+#    #+#             */
+/*   Updated: 2022/03/25 21:14:51 by majjig           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 t_envlist	*ft_lstnew(char *s)
 {
 	t_envlist	*new;
-	char **out;
+	char		**out;
 
 	out = ft_split(s, '=');
 	new = (t_envlist *)malloc(sizeof(t_envlist));
