@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iidkhebb <iidkhebb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 01:14:03 by iidkhebb          #+#    #+#             */
-/*   Updated: 2022/03/25 18:59:13 by iidkhebb         ###   ########.fr       */
+/*   Updated: 2022/03/25 19:05:16 by majjig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,12 @@ void	free_cmd(t_command *command)
 	i = 0;
 	while (command -> execve[i])
 		free(command -> execve[i++]);
+	while (command -> files)
+	{
+		free(command -> files -> file);
+		free(command -> files);
+		command -> files = command -> files -> next;
+	}
 	free(command -> execve);
 	free(command -> args);
 	free(command -> options);
