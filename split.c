@@ -6,7 +6,7 @@
 /*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 16:05:13 by majjig            #+#    #+#             */
-/*   Updated: 2022/03/25 21:23:48 by majjig           ###   ########.fr       */
+/*   Updated: 2022/03/25 21:47:36 by majjig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,7 @@ char	**ft_split_smart(char const *s, char c)
 		}
 		else
 		{
-			s++;
-			str[j] = ft_alloc_fill_2((char *) s, c);
+			str[j] = ft_alloc_fill_2((char *)++s, c);
 			break ;
 		}
 		s++;
