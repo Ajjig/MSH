@@ -41,6 +41,7 @@ void pipe_handler(t_command *command, t_envlist *lst)
 {
 	int save_stdout = dup(0);
 	t_command *tmp;
+	int		exits;
 
 	tmp = command;
 	while (tmp)
@@ -51,7 +52,16 @@ void pipe_handler(t_command *command, t_envlist *lst)
 	tmp = command;
 	while (tmp)
 	{
-		wait(NULL);
+		wait(&exits);
+		if (WIFSIGNALED(exits))
+		{
+			if (WTERMSIG(exits) != 13)
+				g_variable.g_exites = 128 + WTERMSIG(exits);
+			if (WTERMSIG(exits) == SIGQUIT)
+				printf(" Quit\n");
+		}
+		else
+			g_variable.g_exites = WEXITSTATUS(exits);
 		tmp = tmp->next;
 	}
 	close(0);

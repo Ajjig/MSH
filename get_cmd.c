@@ -1,5 +1,12 @@
 #include "minishell.h"
 
+void set_error(char *s)
+{
+	printf("\x1b[31m%s: command not found\n\x1b[37m", s);
+	g_variable.g_exites = 1;
+	return ;
+}
+
 char	*path_joiner(char *path, char *cmd)
 {
 	char	*ret;
@@ -26,7 +33,7 @@ char	*is_in_list(char *cmd)
 		return (ft_strdup(cmd));
 	path = getenv("PATH"); // TODO: use envlist
 	if (path == NULL)
-		return (printf("\x1b[31m%s: command not found\n\x1b[37m", cmd) ,NULL);
+		return (set_error(cmd), NULL);
 	others = ft_split(path, ':');
 	i = 0;
 	while (others[i])
@@ -45,7 +52,7 @@ char	*is_in_list(char *cmd)
 	i = 0;
 	while (others[i])
 		free(others[i++]);
-	return (free(others), printf("%s: command not found\n", cmd), NULL);
+	return (free(others), set_error(cmd), NULL);
 }
 
 char	*args_joiner(char *args, char *new)

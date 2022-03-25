@@ -30,12 +30,21 @@ char *exeve_handler(t_command *command, t_envlist *lst)
 {
 	char	**buff;
 	int		pid;
- 	buff = linked_double(lst);
-	pid = fork();
+	int		exits;
 
+	buff = linked_double(lst);
+	pid = fork();
 	if (pid == 0)
 		execve(command -> program, command -> execve, buff); // TODO: fix command->execve[0] (stays same as given by user)
+	wait(&exits);
+	if (WIFSIGNALED(exits))
+	{
+		if (WTERMSIG(exits) != 13)
+			g_variable.g_exites = 128 + WTERMSIG(exits);
+		if (WTERMSIG(exits) == SIGQUIT)
+			printf(" Quit\n");
+	}
 	else
-		wait(NULL);
+		g_variable.g_exites = WEXITSTATUS(exits);
 	return (free(buff), NULL);
 }

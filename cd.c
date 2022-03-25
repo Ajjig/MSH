@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-char	*__cd__(t_command *command, t_envlist *lst)
+int	__cd__(t_command *command, t_envlist *lst)
 {
 	char	*wd;
 	int		ret;
@@ -13,13 +13,16 @@ char	*__cd__(t_command *command, t_envlist *lst)
 		ret = chdir(user);
 		if (ret != 0)
 			puts("cd: no such file or directory");
-		return NULL;
+		return 1;
 	}
 	else
 		ret = chdir(command -> args[0]);
 	wd = getcwd(NULL, 0);
 	if (ret != 0)
+	{
 		puts("cd: no such file or directory");
+		return 1;
+	}
 	else
 	{
 		free(command->args[0]);
@@ -27,5 +30,5 @@ char	*__cd__(t_command *command, t_envlist *lst)
 		__export(lst, command);
 	}
 	free(wd);
-	return NULL;
+	return 0;
 }
