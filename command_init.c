@@ -1,10 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   command_init.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/25 01:35:20 by majjig            #+#    #+#             */
+/*   Updated: 2022/03/25 01:35:38 by majjig           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 t_command	*init_cmd(char **buff)
 {
 	int			len;
-	t_command	*command = NULL;
+	t_command	*command;
 
+	command = NULL;
 	if (!buff || buff[0] == NULL)
 		return (NULL);
 	len = 0;
