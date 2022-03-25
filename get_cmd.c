@@ -6,7 +6,7 @@
 /*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 01:43:42 by majjig            #+#    #+#             */
-/*   Updated: 2022/03/25 02:09:00 by majjig           ###   ########.fr       */
+/*   Updated: 2022/03/25 02:39:10 by majjig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,10 @@ t_command	*get_cammand(char **buff, int i, int tmp, t_envlist *lst)
 	command = init_cmd(buff);
 	while (buff[i])
 	{
-		parser(command, buff,  &i, &ai);
+		parser(command, buff, &i, &ai);
 		if (buff[i] && buff[i][0] == RED_PIPE && ++i)
 		{
-			command -> next = get_cammand(buff, i , i, lst);
+			command -> next = get_cammand(buff, i, i, lst);
 			break ;
 		}
 		if (buff[i] && ft_strchr(REDIRECTIONS, buff[i][0]))
@@ -102,9 +102,8 @@ t_command	*get_cammand(char **buff, int i, int tmp, t_envlist *lst)
 			command -> redirection = ft_strdup(buff[i++]);
 			gen_files(command, buff[i - 1], buff[i]);
 		}
-		else if (buff[i] && command -> program == NULL)
-			command -> program = is_in_list(buff[i]);
-		i++;
+		else if (buff[i++] && command -> program == NULL)
+			command -> program = is_in_list(buff[i - 1]);
 	}
 	if (!ft_strcmp(command->redirection, "<<"))
 		command->heredoc = heredoc(command, lst);

@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-int	parser(t_command *command, char **buff,  int *i, int *ai)
+void	parser(t_command *command, char **buff,  int *i, int *ai)
 {
 	if (buff[*i] && *i == 1 && !ft_strcmp(buff[*i], "-n") && !ft_strcmp(_ECHO, command -> program))
 	{
@@ -12,5 +12,4 @@ int	parser(t_command *command, char **buff,  int *i, int *ai)
 		command -> args[*ai] = ft_strdup(buff[*i]);
 		*ai += 1;
 	}
-	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 01:38:16 by majjig            #+#    #+#             */
-/*   Updated: 2022/03/25 01:58:25 by majjig           ###   ########.fr       */
+/*   Updated: 2022/03/25 02:16:57 by majjig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,6 @@ int			export_printer(t_envlist *lst);
 void		pipe_handler(t_command *command, t_envlist *lst);
 void		redirection_handler(t_command *command, t_envlist *lst);
 int			heredoc(t_command *command, t_envlist *lst);
-int	parser(t_command *command, char **buff,  int *i, int *ai);
+void		parser(t_command *command, char **buff,  int *i, int *ai);
 
 #endif
