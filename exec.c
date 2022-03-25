@@ -1,10 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: iidkhebb <iidkhebb@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/25 01:20:20 by iidkhebb          #+#    #+#             */
+/*   Updated: 2022/03/25 01:20:28 by iidkhebb         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 void	__exec__(t_command *command, t_envlist *lst)
 {
 	if (command -> program == NULL)
 		return ;
-	else if (ft_strchr(command -> program, '/') && access(command -> program, F_OK) == -1)
+	else if (ft_strchr(command -> program, '/') && \
+		access(command -> program, F_OK) == -1)
 		printf("%s: file/program not found\n", command -> program);
 	else if (ft_strcmp(command -> program, _CD) == 0)
 		g_variable.g_exites = __cd__(command, lst);

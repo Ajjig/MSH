@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: iidkhebb <iidkhebb@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/25 01:14:03 by iidkhebb          #+#    #+#             */
+/*   Updated: 2022/03/25 01:14:34 by iidkhebb         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 t_command	*get_next_cmd(t_envlist *lst)
@@ -8,7 +20,7 @@ t_command	*get_next_cmd(t_envlist *lst)
 	int			i;
 
 	i = 0;
-	if(g_variable.g_exites != 0)
+	if (g_variable.g_exites != 0)
 		read = readline(MINISHELL_RED);
 	else
 		read = readline(MINISHELL_GREEN);
@@ -25,7 +37,7 @@ t_command	*get_next_cmd(t_envlist *lst)
 		return (NULL);
 	command = get_cammand(buff, 0, lst);
 	free(read);
-	return command;
+	return (command);
 }
 
 void	free_cmd(t_command *command)
@@ -48,7 +60,7 @@ void	free_cmd(t_command *command)
 	free(command);
 }
 
-void command_roots(t_command *command, t_envlist *lst)
+void	command_roots(t_command *command, t_envlist *lst)
 {
 	g_variable.is_running = 1;
 	if (command->next || command->redirection)
@@ -58,9 +70,10 @@ void command_roots(t_command *command, t_envlist *lst)
 	g_variable.is_running = 0;
 }
 
-void __exit(t_command *command)
+void	__exit(t_command *command)
 {
-	if (command && command -> program != NULL && ft_strcmp(command -> program, "exit") == 0)
+	if (command && command -> program != NULL \
+		&& ft_strcmp(command -> program, "exit") == 0)
 	{
 		write(1, "exit\n", 5);
 		free_cmd(command);
@@ -88,5 +101,5 @@ int	main(int ac, char **av, char **envp)
 		command = NULL;
 	}
 	rl_clear_history();
-	return 0;
+	return (0);
 }

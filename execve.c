@@ -1,13 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   execve.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: iidkhebb <iidkhebb@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/25 01:18:03 by iidkhebb          #+#    #+#             */
+/*   Updated: 2022/03/25 01:20:03 by iidkhebb         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-char **linked_double(t_envlist *lst)
+char	**linked_double(t_envlist *lst)
 {
-	int		len;
+	int			len;
 	t_envlist	*tmp;
-	char	**buff;
+	char		**buff;
 
 	if (!lst)
-		return NULL;
+		return (NULL);
 	len = 0;
 	tmp = lst;
 	while (tmp)
@@ -23,10 +35,10 @@ char **linked_double(t_envlist *lst)
 		lst = lst -> next;
 	}
 	buff[len] = NULL;
-	return buff;
+	return (buff);
 }
 
-char *exeve_handler(t_command *command, t_envlist *lst)
+char	*exeve_handler(t_command *command, t_envlist *lst)
 {
 	char	**buff;
 	int		pid;
@@ -35,7 +47,7 @@ char *exeve_handler(t_command *command, t_envlist *lst)
 	buff = linked_double(lst);
 	pid = fork();
 	if (pid == 0)
-		execve(command -> program, command -> execve, buff); // TODO: fix command->execve[0] (stays same as given by user)
+		execve(command -> program, command -> execve, buff);
 	wait(&exits);
 	if (WIFSIGNALED(exits))
 	{

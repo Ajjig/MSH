@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   getenv.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: iidkhebb <iidkhebb@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/25 01:15:03 by iidkhebb          #+#    #+#             */
+/*   Updated: 2022/03/25 01:15:35 by iidkhebb         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 char	*finder(char *find, t_envlist *lst)
@@ -31,7 +43,7 @@ char	*cutter(char *tofind)
 		i++;
 	}
 	ret[i] = 0;
-	return ret;
+	return (ret);
 }
 
 char	*joiner(char *s1, char *s2, t_envlist *lst)
@@ -107,6 +119,5 @@ char	*__get_env(char *read, t_envlist *lst)
 		}
 		ret = add_char(ret, read[i++]);
 	}
-	free(read);
-	return (ret);
+	return (free(read), ret);
 }
