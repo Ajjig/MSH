@@ -6,7 +6,7 @@
 /*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 01:23:28 by iidkhebb          #+#    #+#             */
-/*   Updated: 2022/03/25 01:36:46 by majjig           ###   ########.fr       */
+/*   Updated: 2022/03/25 23:40:13 by majjig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_command	*init_cmd(char **buff)
 	command = (t_command *) malloc (sizeof(t_command));
 	command -> options = NULL;
 	command -> args = (char **) malloc ((len + 1) * sizeof(char *));
+	command -> args[0] = NULL;
 	command -> program = NULL;
 	command -> next = NULL;
 	command -> redirection = NULL;
