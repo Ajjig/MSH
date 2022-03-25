@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   args_splitter.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/25 01:18:10 by majjig            #+#    #+#             */
+/*   Updated: 2022/03/25 01:22:03 by majjig           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 static char	*trimmer(char *str);
@@ -23,8 +35,9 @@ int	get_len(char *str)
 			len ++;
 	}
 	else
-		while (str[i] && !ft_strchr(WHITE_SPACES, str[i]) && !ft_strchr(REDIRECTIONS, str[i]) && !ft_strchr("\"'", str[i]))
-			len += (i++ * 0) + 1;
+		while (str[i] && !ft_strchr(WHITE_SPACES, str[i])
+			&& !ft_strchr(REDIRECTIONS, str[i]) && !ft_strchr("\"'", str[i]))
+			len += (i++ *0) + 1;
 	return (len);
 }
 
@@ -100,7 +113,7 @@ static int	count_words(char *str)
 			i++;
 		free(tmp);
 	}
-	return words;
+	return (words);
 }
 
 char	**args_splitter(char *str)
@@ -112,8 +125,7 @@ char	**args_splitter(char *str)
 
 	i = 0;
 	j = 0;
-	str = check_quotes(str);
-	if (str == NULL)
+	if (check_quotes(str) == 0)
 		return (printf("Error:\n	expected \" or '\n"), NULL);
 	ret = (char **) malloc ((count_words(str) + 1) * sizeof(char *));
 	while (str[i])
@@ -135,6 +147,5 @@ char	**args_splitter(char *str)
 		while (str[i] && ft_strchr(WHITE_SPACES, str[i]))
 			i++;
 	}
-	ret[j] = NULL;
-	return ret;
+	return (ret[j] = NULL, ret);
 }
