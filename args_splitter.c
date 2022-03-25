@@ -6,7 +6,7 @@
 /*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 01:18:10 by majjig            #+#    #+#             */
-/*   Updated: 2022/03/25 18:49:05 by majjig           ###   ########.fr       */
+/*   Updated: 2022/03/25 20:55:19 by majjig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ char	**args_splitter(char *str, int i, int j)
 
 	if (check_quotes(str) == 0)
 		return (printf("Error:\n	expected \" or '\n"), NULL);
+	str = ft_strtrim(str, WHITE_SPACES);
 	ret = (char **) malloc ((count_words(str) + 1) * sizeof(char *));
 	while (str[i])
 	{

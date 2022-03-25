@@ -1,2 +1,17 @@
 - not_valid_command not_valid_command2 not_valid_command3 should only try to execute first command  -PENDING
 - fix multiple successive pipes ||| | | | -PENDING
+
+
+
+---- ophen ------
+
+- unset path -> cmd not work
+- folder instead of command creates a child proccess without killing it
+-	export haha=
+	echo $haha -> gives garbage value
+- ctrl C heredoc ktkhrj
+- cat << L > file1 not working at all
+- | ls (syntae error)
+- ls |         | ls parsing error
+- 	env -i ./minishell
+	unset PATH -> doesnt remove it
