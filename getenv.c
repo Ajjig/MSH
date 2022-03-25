@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   getenv.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iidkhebb <iidkhebb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 01:15:03 by iidkhebb          #+#    #+#             */
-/*   Updated: 2022/03/25 01:15:35 by iidkhebb         ###   ########.fr       */
+/*   Updated: 2022/03/25 04:50:26 by majjig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 char	*finder(char *find, t_envlist *lst)
 {
+	if (!ft_strcmp(find, "?"))
+		return (ft_itoa(g_variable.g_exites));
 	while (lst)
 	{
 		if (!ft_strcmp(find, lst -> var_name))
@@ -34,7 +36,7 @@ char	*cutter(char *tofind)
 
 	i = 0;
 	len = 0;
-	while (tofind[len] && (ft_isalnum(tofind[len]) || tofind[len] == '_'))
+	while (tofind[len] && (ft_isalnum(tofind[len]) || tofind[len] == '_' || tofind[len] == '?'))
 		len++;
 	ret = (char *) malloc (len + 1);
 	while (i < len)
