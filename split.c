@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
+/*   By: iidkhebb <iidkhebb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 16:05:13 by majjig            #+#    #+#             */
-/*   Updated: 2022/03/25 21:47:36 by majjig           ###   ########.fr       */
+/*   Updated: 2022/03/25 23:29:00 by iidkhebb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,13 @@ char	**ft_split_smart(char const *s, char c)
 	{
 		if (*s != c)
 		{
-			str[j] = ft_alloc_fill((char *) s, c);
+			str[j++] = ft_alloc_fill((char *) s, c);
 			while (*(s + 1) && *(s + 1) != c)
 				s++;
 		}
 		else
 		{
-			str[j] = ft_alloc_fill_2((char *)++s, c);
+			str[j++] = ft_alloc_fill_2((char *)++s, c);
 			break ;
 		}
 		s++;
