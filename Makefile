@@ -37,7 +37,8 @@ SRCS =	minishell.c \
 		redirection_handler.c \
 		parser.c \
 		is_builtin.c \
-		str_join.c
+		str_join.c \
+		free_lst.c
 
 OBJS =	${SRC:.c=.o}
 

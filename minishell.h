@@ -6,7 +6,7 @@
 /*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 01:38:16 by majjig            #+#    #+#             */
-/*   Updated: 2022/03/25 22:37:19 by majjig           ###   ########.fr       */
+/*   Updated: 2022/03/26 00:08:41 by majjig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,5 +127,6 @@ void		parser(t_command *command, char **buff, int *i, int *ai);
 char		*is_builtin(char *cmd);
 bool		is_redirection(char *str);
 char		*strjoin_free(char *s1, char *s2);
+void		free_lst(t_envlist *lst);
 
 #endif
