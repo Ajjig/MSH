@@ -6,7 +6,7 @@
 /*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 01:18:03 by iidkhebb          #+#    #+#             */
-/*   Updated: 2022/03/25 22:59:13 by majjig           ###   ########.fr       */
+/*   Updated: 2022/03/25 23:29:25 by majjig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,5 @@ char	*exeve_handler(t_command *command, t_envlist *lst)
 	}
 	else
 		g_variable.g_exites = WEXITSTATUS(exits);
-	while (buff[i])
-		free(buff[i++]);
 	return (free(buff), NULL);
 }

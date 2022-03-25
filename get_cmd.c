@@ -6,7 +6,7 @@
 /*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 01:43:42 by majjig            #+#    #+#             */
-/*   Updated: 2022/03/25 22:43:41 by majjig           ###   ########.fr       */
+/*   Updated: 2022/03/25 23:26:37 by majjig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,5 @@ t_command	*get_cammand(char **buff, int i, int tmp, t_envlist *lst)
 	}
 	if (!ft_strcmp(command->redirection, "<<"))
 		command->heredoc = heredoc(command, lst);
-	command -> args[ai] = NULL;
 	return (command -> execve = get_execve(buff, tmp), command);
 }
