@@ -10,6 +10,5 @@ char	*is_builtin(char *cmd)
 	while (i < 7)
 		if (ft_strcmp(all[i++], cmd) == 0)
 			return (all[--i]);
-	printf("%s: command not found.\n", cmd);
 	return (NULL);
 }

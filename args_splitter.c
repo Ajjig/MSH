@@ -6,7 +6,7 @@
 /*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 01:18:10 by majjig            #+#    #+#             */
-/*   Updated: 2022/03/25 01:33:43 by majjig           ###   ########.fr       */
+/*   Updated: 2022/03/25 03:59:05 by majjig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	get_len(char *str)
 
 	i = 0;
 	len = 0;
-		i = 0;
 	if (str[i] == DOUBLE_QUOTE)
 		while (str[++i] != DOUBLE_QUOTE)
 			len++;
