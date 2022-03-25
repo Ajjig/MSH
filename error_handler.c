@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
+/*   By: iidkhebb <iidkhebb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 01:24:42 by iidkhebb          #+#    #+#             */
-/*   Updated: 2022/03/25 04:17:29 by majjig           ###   ########.fr       */
+/*   Updated: 2022/03/25 19:20:30 by iidkhebb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,9 @@ void	put_error(char **buff, int x)
 
 bool	is_redirection(char *str)
 {
-	return (!ft_strcmp(str, RED_APPEND) || !ft_strcmp(str, ">") ||
-		!ft_strcmp(str, "|") || !ft_strcmp(str, "<") || !ft_strcmp(str, ">>") ||
+	return (!ft_strcmp(str, RED_APPEND) || !ft_strcmp(str, ">") || \
+		!ft_strcmp(str, "|") || !ft_strcmp(str, "<") || \
+		!ft_strcmp(str, ">>") || \
 		!ft_strcmp(str, "<<") || !ft_strcmp(str, "||"));
 }
 
