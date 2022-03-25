@@ -6,7 +6,7 @@
 /*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 01:38:16 by majjig            #+#    #+#             */
-/*   Updated: 2022/03/25 18:49:35 by majjig           ###   ########.fr       */
+/*   Updated: 2022/03/25 20:01:53 by majjig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ int			ft_tab_len(char **tab);
 int			__unset(t_command *commad, t_envlist *lst);
 char		**ft_split_smart(char const *s, char c);
 int			check_quotes(char	*str);
-void		gen_files(t_command *command, char *red, char *file);
+void		gen_files(t_command *command, char *red, char *file, int *i);
 char		**get_execve(char **buff, int i);
 bool		error_checker(char **buff);
 char		*__get_env(char *read, t_envlist *lst);
