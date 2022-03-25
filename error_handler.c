@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iidkhebb <iidkhebb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 01:24:42 by iidkhebb          #+#    #+#             */
-/*   Updated: 2022/03/25 19:20:30 by iidkhebb         ###   ########.fr       */
+/*   Updated: 2022/03/25 21:11:03 by majjig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,19 @@ bool	error_checker(char **buff)
 	i = 0;
 	if (buff == NULL)
 		return (false);
+	if (buff[0] && !ft_strcmp(buff[0], "|"))
+		return (put_error(buff, 0), false);
 	while (buff[i])
 	{
 		if (!ft_strcmp(buff[i], "&&") || !ft_strcmp(buff[i], "||"))
 			return (printf("\x1b[31mError:\n\tCompile bonus \
-			part to use \"%s\"\x1b[37m\n\n", buff[i]), false);
+part to use \"%s\"\x1b[37m\n\n", buff[i]), false);
 		if (is_redirection(buff[i]) && buff[i + 1] == NULL)
-			return (put_error(buff, i + 1), false);
-		if (is_redirection(buff[i]) && is_redirection(buff[i + 1]) \
-			&& (buff[i][0] != '|' && buff[i + 1][0] != '>' \
-			&& buff[i + 1][0] != '<'))
-			return (put_error(buff, i + 1), false);
+			return (put_error(buff, 0), false);
+		if (is_redirection(buff[i]) && is_redirection(buff[i + 1]))
+			if (!(buff[i][0] == '|' && (buff[i + 1][0] == '>'
+				|| buff[i + 1][0] == '<')))
+				return (put_error(buff, 0), false);
 		i++;
 	}
 	return (true);
