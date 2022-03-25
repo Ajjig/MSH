@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iidkhebb <iidkhebb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 01:14:03 by iidkhebb          #+#    #+#             */
-/*   Updated: 2022/03/25 01:14:34 by iidkhebb         ###   ########.fr       */
+/*   Updated: 2022/03/25 01:24:39 by majjig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_command	*get_next_cmd(t_envlist *lst)
 	if (ft_strlen(read) > 0)
 		add_history(read);
 	read = __get_env(read, lst);
-	buff = args_splitter(read);
+	buff = args_splitter(read, 0, 0);
 	if (error_checker(buff) == false)
 		return (NULL);
 	command = get_cammand(buff, 0, lst);

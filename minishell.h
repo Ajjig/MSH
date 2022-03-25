@@ -89,7 +89,7 @@ void		__exec__(t_command *command, t_envlist *lst);
 int			__cwd__(void);
 void		__exit(t_command *command);
 char		*__next__(char *str);
-char		**args_splitter(char *s);
+char		**args_splitter(char *s, int i, int j);
 int			__echo(t_command *commad);
 t_envlist	*__env__init(char **envp);
 int			__env(t_envlist *lst);
