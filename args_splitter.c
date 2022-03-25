@@ -1,5 +1,7 @@
 #include "minishell.h"
 
+static char	*trimmer(char *str);
+
 int	get_len(char *str)
 {
 	int	i;
@@ -26,6 +28,30 @@ int	get_len(char *str)
 	return (len);
 }
 
+char	*red_as_arg(char *red)
+{
+	char	*ret;
+	char	*tmp;
+	char	*joined;
+	char	ch;
+	int		len;
+
+	len = 0;
+	ret = malloc (2 * sizeof(char));
+	ret[0] = 7;
+	ret[1] = 0;
+	ch = red[len++];
+	while (red[len] != ch)
+		len++;
+	tmp = (char *) malloc (len);
+	ft_strlcpy(tmp, red + 1, len);
+	tmp[len] = 0;
+	joined = ft_strjoin(ret, tmp);
+	free(ret);
+	free(tmp);
+	return (joined);
+}
+
 static char	*trimmer(char *str)
 {
 	int		i;
@@ -39,6 +65,8 @@ static char	*trimmer(char *str)
 	ret = (char *) malloc (len + 1);
 	if (str[i] == SINGLE_QUOTE || str[i] == DOUBLE_QUOTE)
 		is = true;
+	if (is && ft_strchr(REDIRECTIONS, str[i + 1]))
+		return (red_as_arg(str));
 	while (i < len)
 	{
 		while (str[i + 1] == -1)
@@ -80,22 +108,30 @@ char	**args_splitter(char *str)
 	char	**ret;
 	int		i;
 	int		j;
+	char	*tmp;
 
 	i = 0;
 	j = 0;
 	str = check_quotes(str);
 	if (str == NULL)
-	{
-		puts("Error:\n	expected \" or '");
-		return (NULL);
-	}
+		return (printf("Error:\n	expected \" or '\n"), NULL);
 	ret = (char **) malloc ((count_words(str) + 1) * sizeof(char *));
 	while (str[i])
 	{
 		ret[j] = trimmer(str + i);
 		if (str[i] == SINGLE_QUOTE || str[i] == DOUBLE_QUOTE)
 			i += 2;
-		i += ft_strlen(ret[j++]);
+		i += ft_strlen(ret[j]);
+		while (str[i] && !ft_strchr(WHITE_SPACES, str[i]))
+		{
+			tmp = trimmer(str + i);
+			ret[j] = ft_strjoin(ret[j], tmp);
+			if (str[i] == SINGLE_QUOTE || str[i] == DOUBLE_QUOTE)
+				i += 2;
+			i += ft_strlen(tmp);
+			free(tmp);
+		}
+		j++;
 		while (str[i] && ft_strchr(WHITE_SPACES, str[i]))
 			i++;
 	}
