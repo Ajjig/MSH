@@ -6,7 +6,7 @@
 /*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 21:20:20 by majjig            #+#    #+#             */
-/*   Updated: 2022/03/25 21:20:30 by majjig           ###   ########.fr       */
+/*   Updated: 2022/03/25 23:26:49 by majjig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ void	parser(t_command *command, char **buff, int *i, int *ai)
 	{
 		command -> args[*ai] = ft_strdup(buff[*i]);
 		*ai += 1;
+		command -> args[*ai] = NULL;
 	}
 }
