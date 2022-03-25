@@ -6,7 +6,7 @@
 /*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 01:43:42 by majjig            #+#    #+#             */
-/*   Updated: 2022/03/25 02:39:10 by majjig           ###   ########.fr       */
+/*   Updated: 2022/03/25 02:57:18 by majjig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,9 @@ t_command	*get_cammand(char **buff, int i, int tmp, t_envlist *lst)
 			command -> redirection = ft_strdup(buff[i++]);
 			gen_files(command, buff[i - 1], buff[i]);
 		}
-		else if (buff[i++] && command -> program == NULL)
-			command -> program = is_in_list(buff[i - 1]);
+		else if (buff[i] && command -> program == NULL && ++i)
+			command -> program = is_in_list(buff[i]);
+		i++;
 	}
 	if (!ft_strcmp(command->redirection, "<<"))
 		command->heredoc = heredoc(command, lst);
