@@ -6,7 +6,7 @@
 /*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 01:43:42 by majjig            #+#    #+#             */
-/*   Updated: 2022/03/25 23:26:37 by majjig           ###   ########.fr       */
+/*   Updated: 2022/03/26 00:56:13 by majjig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,12 @@ t_command	*get_cammand(char **buff, int i, int tmp, t_envlist *lst)
 
 	ai = 0;
 	command = init_cmd(buff);
-	while (buff[i])
+	while (buff[++i])
 	{
 		parser(command, buff, &i, &ai);
 		if (buff[i] && buff[i][0] == RED_PIPE && ++i)
 		{
-			command -> next = get_cammand(buff, i, i, lst);
+			command -> next = get_cammand(buff, i - 1, i, lst);
 			break ;
 		}
 		if (buff[i] && ft_strchr(REDIRECTIONS, buff[i][0]))
@@ -96,7 +96,6 @@ t_command	*get_cammand(char **buff, int i, int tmp, t_envlist *lst)
 			if (command -> program == NULL)
 				break ;
 		}
-		i++;
 	}
 	if (!ft_strcmp(command->redirection, "<<"))
 		command->heredoc = heredoc(command, lst);
