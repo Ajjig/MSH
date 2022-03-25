@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   quotes.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: iidkhebb <iidkhebb@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/25 01:27:25 by iidkhebb          #+#    #+#             */
+/*   Updated: 2022/03/25 01:27:31 by iidkhebb         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 char	*check_quotes(char	*str)
@@ -18,6 +30,6 @@ char	*check_quotes(char	*str)
 		i++;
 	}
 	if (count1 % 2 != 0 || count2 % 2 != 0)
-		return NULL;
+		return (NULL);
 	return (str);
 }
