@@ -6,7 +6,7 @@
 /*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 01:38:16 by majjig            #+#    #+#             */
-/*   Updated: 2022/03/25 01:38:17 by majjig           ###   ########.fr       */
+/*   Updated: 2022/03/25 01:58:25 by majjig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ typedef struct s_envlist // linked lst
 
 /*  PROTOTYPES  */
 
-t_command	*get_cammand(char **buff, int i, t_envlist *lst);
+t_command	*get_cammand(char **buff, int i, int tmp, t_envlist *lst);
 t_command	*init_cmd(char **buff);
 void		free_cmd(t_command *command);
 int			__cd__(t_command *command, t_envlist *lst);
@@ -123,5 +123,6 @@ int			export_printer(t_envlist *lst);
 void		pipe_handler(t_command *command, t_envlist *lst);
 void		redirection_handler(t_command *command, t_envlist *lst);
 int			heredoc(t_command *command, t_envlist *lst);
+int	parser(t_command *command, char **buff,  int *i, int *ai);
 
 #endif

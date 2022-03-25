@@ -34,7 +34,8 @@ SRCS =	minishell.c \
 		error_handler.c \
 		getenv.c \
 		pipe_handler.c \
-		redirection_handler.c
+		redirection_handler.c \
+		parser.c
 
 OBJS =	${SRC:.c=.o}
 

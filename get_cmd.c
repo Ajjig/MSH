@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_cmd.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/25 01:43:42 by majjig            #+#    #+#             */
+/*   Updated: 2022/03/25 02:09:00 by majjig           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-void set_error(char *s)
+void	set_error(char *s)
 {
 	printf("\x1b[31m%s: command not found\n\x1b[37m", s);
 	g_variable.g_exites = 1;
@@ -20,7 +32,8 @@ char	*path_joiner(char *path, char *cmd)
 
 char	*is_in_list(char *cmd)
 {
-	static char	*all[] = {"echo", "cd", "pwd", "export", "unset", "env", "exit"};
+	static char	*all[] = {"echo", "cd", "pwd",
+		"export", "unset", "env", "exit"};
 	char		**others;
 	char		*path;
 	int			i;
@@ -31,7 +44,7 @@ char	*is_in_list(char *cmd)
 			return (ft_strdup(all[--i]));
 	if (ft_strchr(cmd, '/'))
 		return (ft_strdup(cmd));
-	path = getenv("PATH"); // TODO: use envlist
+	path = getenv("PATH");
 	if (path == NULL)
 		return (set_error(cmd), NULL);
 	others = ft_split(path, ':');
@@ -69,27 +82,19 @@ char	*args_joiner(char *args, char *new)
 	return (joined);
 }
 
-
-t_command	*get_cammand(char **buff, int i, t_envlist *lst)
+t_command	*get_cammand(char **buff, int i, int tmp, t_envlist *lst)
 {
 	t_command	*command;
 	int			ai;
-	int			tmp;
 
-	tmp = i;
 	ai = 0;
 	command = init_cmd(buff);
-	if (command == NULL || !buff || buff[i] == NULL)
-		return (NULL);
 	while (buff[i])
 	{
-		if (buff[i] && i == 1 && !ft_strcmp(buff[i], "-n") && !ft_strcmp(_ECHO, command -> program))
-			command -> options = ft_strdup(buff[i++]);
-		if (buff[i] && i > 0 && !ft_strchr(REDIRECTIONS, buff[i][0]))
-			command -> args[ai++] = ft_strdup(buff[i]);
-		if (buff[i] && buff[i][0] == RED_PIPE)
+		parser(command, buff,  &i, &ai);
+		if (buff[i] && buff[i][0] == RED_PIPE && ++i)
 		{
-			command -> next = get_cammand(buff, ++i, lst);
+			command -> next = get_cammand(buff, i , i, lst);
 			break ;
 		}
 		if (buff[i] && ft_strchr(REDIRECTIONS, buff[i][0]))
@@ -104,6 +109,5 @@ t_command	*get_cammand(char **buff, int i, t_envlist *lst)
 	if (!ft_strcmp(command->redirection, "<<"))
 		command->heredoc = heredoc(command, lst);
 	command -> args[ai] = NULL;
-	command -> execve = get_execve(buff, tmp);
-	return command;
+	return (command -> execve = get_execve(buff, tmp), command);
 }

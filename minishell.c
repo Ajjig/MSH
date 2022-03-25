@@ -6,7 +6,7 @@
 /*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 01:14:03 by iidkhebb          #+#    #+#             */
-/*   Updated: 2022/03/25 01:24:39 by majjig           ###   ########.fr       */
+/*   Updated: 2022/03/25 02:09:54 by majjig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ t_command	*get_next_cmd(t_envlist *lst)
 	buff = args_splitter(read, 0, 0);
 	if (error_checker(buff) == false)
 		return (NULL);
-	command = get_cammand(buff, 0, lst);
+	if (!buff || buff[0] == NULL)
+		return (NULL);
+	command = get_cammand(buff, 0, 0, lst);
 	free(read);
 	return (command);
 }
