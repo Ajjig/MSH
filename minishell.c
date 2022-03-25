@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
+/*   By: iidkhebb <iidkhebb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 01:14:03 by iidkhebb          #+#    #+#             */
-/*   Updated: 2022/03/25 02:09:54 by majjig           ###   ########.fr       */
+/*   Updated: 2022/03/25 18:59:13 by iidkhebb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	free_cmd(t_command *command)
 	int	i;
 
 	i = 0;
-	if (command == NULL)
+	if (!command)
 		return ;
 	free(command -> program);
 	while (command -> args && command -> args[i])
@@ -60,6 +60,8 @@ void	free_cmd(t_command *command)
 	free(command -> options);
 	free(command -> redirection);
 	free(command);
+	command = command->next;
+	free_cmd(command);
 }
 
 void	command_roots(t_command *command, t_envlist *lst)
