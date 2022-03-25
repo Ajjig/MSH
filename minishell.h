@@ -102,7 +102,7 @@ int			signal_handler(void);
 int			ft_tab_len(char **tab);
 int			__unset(t_command *commad, t_envlist *lst);
 char		**ft_split_smart(char const *s, char c);
-char		*check_quotes(char	*str);
+int			check_quotes(char	*str);
 void		gen_files(t_command *command, char *red, char *file);
 char		**get_execve(char **buff, int i);
 bool		error_checker(char **buff);

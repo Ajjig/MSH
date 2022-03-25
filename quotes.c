@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-char	*check_quotes(char	*str)
+int	check_quotes(char	*str)
 {
 	int	count1;
 	int	count2;
@@ -18,6 +18,6 @@ char	*check_quotes(char	*str)
 		i++;
 	}
 	if (count1 % 2 != 0 || count2 % 2 != 0)
-		return NULL;
-	return (str);
+		return 0;
+	return (1);
 }
