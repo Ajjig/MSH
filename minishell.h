@@ -6,7 +6,7 @@
 /*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 01:38:16 by majjig            #+#    #+#             */
-/*   Updated: 2022/03/26 00:08:41 by majjig           ###   ########.fr       */
+/*   Updated: 2022/03/26 00:47:59 by majjig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ int			check_quotes(char	*str);
 void		gen_files(t_command *command, char *red, char *file, int *i);
 char		**get_execve(char **buff, int i);
 bool		error_checker(char **buff);
-char		*__get_env(char *read, t_envlist *lst);
+char		*__get_env(char *read, t_envlist *lst, int i);
 int			export_printer(t_envlist *lst);
 void		pipe_handler(t_command *command, t_envlist *lst);
 void		redirection_handler(t_command *command, t_envlist *lst);

@@ -6,7 +6,7 @@
 /*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 01:15:03 by iidkhebb          #+#    #+#             */
-/*   Updated: 2022/03/26 00:44:15 by majjig           ###   ########.fr       */
+/*   Updated: 2022/03/26 00:48:15 by majjig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,15 +103,13 @@ char	*add_char(char *s, char c)
 	return (ret);
 }
 
-char	*__get_env(char *read, t_envlist *lst)
+char	*__get_env(char *read, t_envlist *lst, int i)
 {
-	int		i;
 	char	*ret;
 	int		count1;
 	int		count2;
 	char	*tmp;
 
-	i = 0;
 	count2 = 0;
 	count1 = 0;
 	ret = NULL;
