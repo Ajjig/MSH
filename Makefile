@@ -13,8 +13,6 @@ NAME = minishell
 
 INC = minishell.h
 
-LIBFT = LIBFT/LIBFT.a
-
 SRCS =	minishell.c \
 		get_cmd.c \
 		command_init.c \
@@ -39,7 +37,7 @@ SRCS =	minishell.c \
 		redirection_handler.c \
 		parser.c \
 		is_builtin.c \
-		str_join.c 
+		str_join.c
 
 OBJS =	${SRC:.c=.o}
 
@@ -53,7 +51,7 @@ CC = gcc
 
 all: display libft $(NAME)
 
-$(NAME): $(OBJS) $(INC) $(LIBFT)
+$(NAME): $(OBJS) $(INC) $(LIBNAME)
 	$(CC) $(CFLAGS) -L$(shell brew --prefix readline)/lib $(SRCS) $(LIBNAME) -o $(NAME)
 
 libft:

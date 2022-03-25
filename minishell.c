@@ -6,7 +6,7 @@
 /*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 01:14:03 by iidkhebb          #+#    #+#             */
-/*   Updated: 2022/03/25 22:35:35 by majjig           ###   ########.fr       */
+/*   Updated: 2022/03/25 23:04:07 by majjig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_command	*get_next_cmd(t_envlist *lst)
 		read = readline(MINISHELL_GREEN);
 	if (!read)
 	{
-		puts("exit");
+		printf("exit");
 		exit(1);
 	}
 	if (ft_strlen(read) > 0)
