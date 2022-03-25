@@ -6,7 +6,7 @@
 /*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 01:18:10 by majjig            #+#    #+#             */
-/*   Updated: 2022/03/25 22:20:52 by majjig           ###   ########.fr       */
+/*   Updated: 2022/03/26 00:51:21 by majjig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,5 @@ char	**args_splitter(char **ret, char *str, int i, int j)
 		while (str[i] && ft_strchr(WHITE_SPACES, str[i]))
 			i++;
 	}
-	free(str);
-	return (ret[j] = NULL, ret);
+	return (ret[j] = NULL, free(str), ret);
 }

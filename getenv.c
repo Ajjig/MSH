@@ -6,7 +6,7 @@
 /*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 01:15:03 by iidkhebb          #+#    #+#             */
-/*   Updated: 2022/03/25 22:06:49 by majjig           ###   ########.fr       */
+/*   Updated: 2022/03/26 00:48:15 by majjig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,13 @@ char	*add_char(char *s, char c)
 	char	*ret;
 
 	i = 0;
+	if (s == NULL)
+	{
+		ret = (char *) malloc (2 * sizeof(char));
+		ret[0] = c;
+		ret[1] = 0;
+		return (ret);
+	}
 	ret = (char *) malloc (ft_strlen(s) + 2);
 	while (s[i])
 	{
@@ -96,20 +103,16 @@ char	*add_char(char *s, char c)
 	return (ret);
 }
 
-char	*__get_env(char *read, t_envlist *lst)
+char	*__get_env(char *read, t_envlist *lst, int i)
 {
-	int		i;
 	char	*ret;
 	int		count1;
 	int		count2;
 	char	*tmp;
 
-	i = 0;
 	count2 = 0;
 	count1 = 0;
 	ret = NULL;
-	if (ft_strlen(read) > 0)
-		ret = (char *) malloc (ft_strlen(read) + 1);
 	while (read[i])
 	{
 		if (read[i] == SINGLE_QUOTE && count2 % 2 == 0)
@@ -122,7 +125,8 @@ char	*__get_env(char *read, t_envlist *lst)
 			i += ft_strlen(tmp);
 			ret = joiner(ret, tmp, lst);
 		}
-		ret = add_char(ret, read[i++]);
+		else
+			ret = add_char(ret, read[i++]);
 	}
 	return (free(read), ret);
 }

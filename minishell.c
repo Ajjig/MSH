@@ -6,7 +6,7 @@
 /*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 01:14:03 by iidkhebb          #+#    #+#             */
-/*   Updated: 2022/03/25 23:04:07 by majjig           ###   ########.fr       */
+/*   Updated: 2022/03/26 00:50:08 by majjig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,18 @@ t_command	*get_next_cmd(t_envlist *lst)
 	if (!read)
 	{
 		printf("exit");
+		free_lst(lst);
 		exit(1);
 	}
 	if (ft_strlen(read) > 0)
 		add_history(read);
-	read = __get_env(read, lst);
+	read = __get_env(read, lst, 0);
 	buff = args_splitter(NULL, read, 0, 0);
 	if (error_checker(buff) == false)
 		return (NULL);
 	if (!buff || buff[0] == NULL)
 		return (NULL);
-	command = get_cammand(buff, 0, 0, lst);
-	return (free(read), command);
+	return (free(read), command = get_cammand(buff, 0, 0, lst), command);
 }
 
 void	free_cmd(t_command *command)

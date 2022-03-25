@@ -37,7 +37,8 @@ SRCS =	minishell.c \
 		redirection_handler.c \
 		parser.c \
 		is_builtin.c \
-		str_join.c
+		str_join.c \
+		free_lst.c
 
 OBJS =	${SRC:.c=.o}
 
@@ -46,10 +47,9 @@ LIBNAME = LIBFT/libft.a
 CFLAGS = -Wall -Werror -Wextra -g
 CFLAGS += -lreadline
 CFLAGS += -I$(shell brew --prefix readline)/include
-ANIMATION = curl -s "http://artscene.textfiles.com/vt100/monorail.vt" | pv -q -L 6600
 CC = gcc
 
-all: display libft $(NAME)
+all: libft $(NAME)
 
 $(NAME): $(OBJS) $(INC) $(LIBNAME)
 	$(CC) $(CFLAGS) -L$(shell brew --prefix readline)/lib $(SRCS) $(LIBNAME) -o $(NAME)
@@ -57,9 +57,6 @@ $(NAME): $(OBJS) $(INC) $(LIBNAME)
 libft:
 	@make -C LIBFT/
 	@echo "\x1b[33mLIBFT compiled successfully\x1b[37m"
-display:
-	-@$(shell brew install readline)
-	-@$(shell brew install pv)
 
 	clear
 	@echo "\x1b[36m	__  __  ___  _   _  ___  ____   _   _  _____  _      _      "
