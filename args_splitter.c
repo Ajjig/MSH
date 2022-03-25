@@ -6,7 +6,7 @@
 /*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 01:18:10 by majjig            #+#    #+#             */
-/*   Updated: 2022/03/25 01:22:03 by majjig           ###   ########.fr       */
+/*   Updated: 2022/03/25 01:33:43 by majjig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,15 +116,11 @@ static int	count_words(char *str)
 	return (words);
 }
 
-char	**args_splitter(char *str)
+char	**args_splitter(char *str, int i, int j)
 {
 	char	**ret;
-	int		i;
-	int		j;
 	char	*tmp;
 
-	i = 0;
-	j = 0;
 	if (check_quotes(str) == 0)
 		return (printf("Error:\n	expected \" or '\n"), NULL);
 	ret = (char **) malloc ((count_words(str) + 1) * sizeof(char *));
@@ -134,7 +130,7 @@ char	**args_splitter(char *str)
 		if (str[i] == SINGLE_QUOTE || str[i] == DOUBLE_QUOTE)
 			i += 2;
 		i += ft_strlen(ret[j]);
-		while (str[i] && !ft_strchr(WHITE_SPACES, str[i]))
+		while ((str[i] && !ft_strchr(WHITE_SPACES, str[i])) || j++ < 0)
 		{
 			tmp = trimmer(str + i);
 			ret[j] = ft_strjoin(ret[j], tmp);
@@ -143,7 +139,6 @@ char	**args_splitter(char *str)
 			i += ft_strlen(tmp);
 			free(tmp);
 		}
-		j++;
 		while (str[i] && ft_strchr(WHITE_SPACES, str[i]))
 			i++;
 	}
