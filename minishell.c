@@ -6,7 +6,7 @@
 /*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 01:14:03 by iidkhebb          #+#    #+#             */
-/*   Updated: 2022/03/26 00:55:18 by majjig           ###   ########.fr       */
+/*   Updated: 2022/03/26 01:29:04 by majjig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ t_command	*get_next_cmd(t_envlist *lst)
 	if (!read)
 	{
 		printf("exit");
-		free_lst(lst);
 		exit(1);
 	}
 	if (ft_strlen(read) > 0)
