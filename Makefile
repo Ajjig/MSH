@@ -1,78 +1,38 @@
-
-# COLORS
-GREY=$'\x1b[30m
-RED=$'\x1b[31m
-GREEN=$'\x1b[32m
-YELLOW=$'\x1b[33m
-BLUE=$'\x1b[34m
-PURPLE=$'\x1b[35m
-CYAN=$'\x1b[36m
-WHITE=$'\x1b[37m
-
 NAME = minishell
-
+LIBFT = libft/libft.a
 INC = minishell.h
+CFLAGS = -Wall -Wextra -Werror
+RM = rm -rf
+CC = cc
 
-SRCS =	minishell.c \
-		get_cmd.c \
-		command_init.c \
-		exec.c \
-		cd.c \
-		cwd.c \
-		__echo.c \
-		__env.c \
-		list_lib.c \
-		__export.c \
-		args_splitter.c \
-		sig_handler.c \
-		execve.c \
-		__unset.c \
-		split.c \
-		quotes.c \
-		files.c \
-		get_execve.c \
-		error_handler.c \
-		getenv.c \
-		pipe_handler.c \
-		redirection_handler.c \
-		parser.c \
-		is_builtin.c \
-		str_join.c \
-		free_lst.c
+FILES = minishell.c get_cmd.c command_init.c exec.c cd.c cwd.c __echo.c __env.c list_lib.c __export.c \
+		args_splitter.c sig_handler.c execve.c __unset.c split.c quotes.c \
+		files.c get_execve.c error_handler.c getenv.c pipe_handler.c redirection_handler.c \
+		parser.c is_builtin.c str_join.c free_lst.c
 
-OBJS =	${SRC:.c=.o}
+OBJS = $(FILES:.c=.o)
 
-LIBNAME = LIBFT/libft.a
+all: $(NAME)
 
-CFLAGS = -Wall -Werror -Wextra -g
-CFLAGS += -lreadline
-CFLAGS += -I$(shell brew --prefix readline)/include
-CC = gcc
+$(NAME): $(OBJS) $(LIBFT)
+	@$(CC)  $(OBJS) $(LIBFT) -L$(shell brew --prefix readline)/lib -lreadline -o $(NAME)
+	@echo "minishell created"
 
-all: libft $(NAME)
+$(LIBFT):
+	@make bonus -C libft
 
-$(NAME): $(OBJS) $(INC) $(LIBNAME)
-	$(CC) $(CFLAGS) -L$(shell brew --prefix readline)/lib $(SRCS) $(LIBNAME) -o $(NAME)
-
-libft:
-	@make -C LIBFT/
-	@echo "\x1b[33mLIBFT compiled successfully\x1b[37m"
-
-	clear
-	@echo "\x1b[36m	__  __  ___  _   _  ___  ____   _   _  _____  _      _      "
-	@echo "	|  \/  ||_ _|| \ | ||_ _|/ ___| | | | || ____|| |    | |"
-	@echo "	| |\/| | | | |  \| | | | \___ \ | |_| ||  _|  | |    | |"
-	@echo "	| |  | | | | | |\  | | |  ___) ||  _  || |___ | |___ | |___"
-	@echo "	|_|  |_||___||_| \_||___||____/ |_| |_||_____||_____||_____|"
+%.o:%.c $(INC)
+	@$(CC) $(CFLAGS) -I$(shell brew --prefix readline)/include -c $< -o $@ -I $(INC)
+	@echo "compiling minishell ..."
 
 clean:
-	-@rm -fr $(OBJS)
-	-@make clean -C LIBFT/
+	@$(RM) $(OBJS)
+	@make clean -C libft
+	@echo "successfuly cleaned"
 
 fclean: clean
-	-@rm -fr $(NAME)
-	-@make fclean -C LIBFT/
+	@$(RM) $(NAME)
+	@make fclean -C libft
+	@echo "executable removed successfuly"
 
 re: fclean all
-
-.PHONY: libft $(NAME)
