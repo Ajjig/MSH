@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iidkhebb <iidkhebb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 00:52:50 by iidkhebb          #+#    #+#             */
-/*   Updated: 2022/03/25 00:58:54 by iidkhebb         ###   ########.fr       */
+/*   Updated: 2022/03/26 18:08:55 by majjig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,9 @@ int	__cd__(t_command *command, t_envlist *lst)
 	}
 	else
 	{
-		free(command->args[0]);
-		command->args[0] = ft_strjoin("PWD=", wd);
+		free(*(command->args));
+		*(command->args) = ft_strjoin("PWD=", wd);
+		*(command->args + 1) = NULL;
 		__export(lst, command);
 	}
 	free(wd);
