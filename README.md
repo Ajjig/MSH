@@ -9,7 +9,7 @@ This project is requires 'readline'. you can install it using the following comm
 brew install readline
 ```
 ## Running
-After installing readline you can run *minishell* with the following command
+After installing readline you can compile & run *minishell* with the following command
 ```Bash
 git clone git@github.com:Ajjig/MINI_SHELL.git && cd MINI_SHELL && Make && ./minishell
 ```
