@@ -13,3 +13,11 @@ After installing readline you can compile & run *minishell* with the following c
 ```Bash
 git clone git@github.com:Ajjig/MINI_SHELL.git && cd MINI_SHELL && Make && ./minishell
 ```
+for linux users you mast type
+```Bash
+make rl
+```
+to install readline. then you can compile the srcs with the following command
+```Bash
+make linux
+```
