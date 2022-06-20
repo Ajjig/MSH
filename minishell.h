@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ajjig <ajjig@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 01:38:16 by majjig            #+#    #+#             */
-/*   Updated: 2022/03/26 00:47:59 by majjig           ###   ########.fr       */
+/*   Updated: 2022/06/20 21:30:26 by ajjig            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 /*  INClUDES  */
 
-# include "LIBFT/libft.h"
+# include "./LIBFT/libft.h"
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -26,6 +26,7 @@
 # include <stdbool.h>
 # include <readline/readline.h>
 # include <string.h>
+# include <sys/wait.h>
 
 /*  DEFINES  */
 
