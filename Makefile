@@ -1,5 +1,5 @@
 NAME = minishell
-LIBFT = libft/libft.a
+LIBFT = LIBFT/libft.a
 INC = minishell.h
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
@@ -19,11 +19,19 @@ $(NAME): $(OBJS) $(LIBFT)
 	@echo "minishell created"
 
 $(LIBFT):
-	@make bonus -C libft
+	@make bonus -C LIBFT/
 
 %.o:%.c $(INC)
 	@$(CC) $(CFLAGS) -I$(shell brew --prefix readline)/include -c $< -o $@ -I $(INC)
 	@echo "compiling minishell ..."
+
+rl:
+	@echo "INSTALLING READLINE"
+	@sudo apt install lib32readline8 lib32readline-dev libreadline-dev
+	@echo "READLINE INSTALLED SUCCESSFULLY"
+
+linux: $(LIBFT)
+	$(CC) $(CFLAGS) $(FILES) $(LIBFT) -L/usr/local/lib -I/usr/local/include -lreadline -o $(NAME)
 
 clean:
 	@$(RM) $(OBJS)
