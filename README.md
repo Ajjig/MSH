@@ -11,7 +11,7 @@ brew install readline
 ```
 ### Using apt-get (Debian)
 ```Bash
-
+sudo apt install lib32readline8 lib32readline-dev libreadline-dev
 ```
 
 ## Running
