@@ -35,12 +35,12 @@ linux: $(LIBFT)
 
 clean:
 	@$(RM) $(OBJS)
-	@make clean -C libft
+	@make clean -C LIBFT/
 	@echo "successfuly cleaned"
 
 fclean: clean
 	@$(RM) $(NAME)
-	@make fclean -C libft
+	@make fclean -C LIBFT/
 	@echo "executable removed successfuly"
 
 re: fclean all
