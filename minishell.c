@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ajjig <ajjig@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 01:14:03 by iidkhebb          #+#    #+#             */
-/*   Updated: 2022/03/26 01:29:04 by majjig           ###   ########.fr       */
+/*   Updated: 2022/06/20 21:24:48 by ajjig            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ t_command	*get_next_cmd(t_envlist *lst)
 	char		*read;
 	t_command	*command;
 	char		**buff;
-	int			i;
 
-	i = 0;
 	if (g_variable.g_exites != 0)
 		read = readline(MINISHELL_RED);
 	else
@@ -95,7 +93,8 @@ int	main(int ac, char **av, char **envp)
 	t_command	*command;
 	t_envlist	*lst;
 
-	av = NULL;
+	av += 0;
+	ac += 0;
 	lst = __env__init(envp);
 	signal_handler();
 	while (true)

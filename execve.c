@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execve.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ajjig <ajjig@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 01:18:03 by iidkhebb          #+#    #+#             */
-/*   Updated: 2022/03/25 23:29:25 by majjig           ###   ########.fr       */
+/*   Updated: 2022/06/20 21:23:42 by ajjig            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,7 @@ char	*exeve_handler(t_command *command, t_envlist *lst)
 	char	**buff;
 	int		pid;
 	int		exits;
-	int		i;
 
-	i = 0;
 	buff = linked_double(lst);
 	pid = fork();
 	if (pid == 0)
