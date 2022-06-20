@@ -5,9 +5,15 @@ When you start a terminal (such as the GNOME Terminal or Konsole on Linux or iTe
 This probably comes across as unfriendly, but it's actually a perfectly succinct representation of the many connotations around the term "Bash." To many new users, there's no separation between the concept of Bash and the concept of Linux or Unix: it's the proverbial black-screen-with-green-text into which you're supposed to code what your computer does next. That conflates the Bash shell with the commands you type into the shell. It's important to understand that they're two separate things: Bash is just an application, and its primary job is to run other applications (in the form of commands) that are installed on the same system.
 ## Requirements
 This project is requires 'readline'. you can install it using the following command:
+### Using brew (MacOS)
 ```Bash
 brew install readline
 ```
+### Using apt-get (Debian)
+```Bash
+
+```
+
 ## Running
 ### MacOS
 After installing readline you can compile & run *minishell* with the following command
@@ -19,7 +25,7 @@ for linux users you mast type this command to install readline (it may take some
 ```Bash
 make rl
 ```
-to install readline. then you can compile the srcs with the following command
+then you can compile the srcs with the following command
 ```Bash
 make linux
 ```
