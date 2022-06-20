@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   getenv.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ajjig <ajjig@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 01:15:03 by iidkhebb          #+#    #+#             */
-/*   Updated: 2022/03/26 00:48:15 by majjig           ###   ########.fr       */
+/*   Updated: 2022/06/21 00:38:47 by ajjig            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,8 @@ char	*__get_env(char *read, t_envlist *lst, int i)
 
 	count2 = 0;
 	count1 = 0;
-	ret = NULL;
+	ret = (char *) malloc (2 * sizeof(char));
+	*ret = 0;
 	while (read[i])
 	{
 		if (read[i] == SINGLE_QUOTE && count2 % 2 == 0)
