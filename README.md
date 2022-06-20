@@ -9,11 +9,13 @@ This project is requires 'readline'. you can install it using the following comm
 brew install readline
 ```
 ## Running
+### MacOS
 After installing readline you can compile & run *minishell* with the following command
 ```Bash
 git clone git@github.com:Ajjig/MINI_SHELL.git && cd MINI_SHELL && Make && ./minishell
 ```
-for linux users you mast type
+### Linux
+for linux users you mast type this command to install readline (it may take some seconds)
 ```Bash
 make rl
 ```
