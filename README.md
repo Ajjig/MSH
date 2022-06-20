@@ -13,6 +13,10 @@ brew install readline
 ```Bash
 sudo apt install lib32readline8 lib32readline-dev libreadline-dev
 ```
+or
+```Bash
+cd minishell/path/ && make rl
+```
 
 # Running
 ### MacOS
@@ -21,10 +25,7 @@ After installing readline you can compile & run *minishell* with the following c
 git clone git@github.com:Ajjig/MINI_SHELL.git && cd MINI_SHELL && Make && ./minishell
 ```
 ### Linux
-for linux users you mast type this command to install readline (it may take some seconds)
-```Bash
-make rl
-```
+after successfully installaling readline
 then you can compile the srcs with the following command
 ```Bash
 make linux
