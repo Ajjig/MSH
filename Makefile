@@ -12,7 +12,8 @@ FILES = minishell.c get_cmd.c command_init.c exec.c cd.c cwd.c __echo.c __env.c 
 
 OBJS = $(FILES:.c=.o)
 
-all: $(NAME)
+all:
+	bash installer.sh
 
 $(NAME): $(OBJS) $(LIBFT)
 	@$(CC)  $(OBJS) $(LIBFT) -L$(shell brew --prefix readline)/lib -lreadline -o $(NAME)
