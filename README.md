@@ -1,4 +1,4 @@
-# MINI_SHELL
+# MSH
 MSH will introduce you to the world of shells, which provide a convenient text interface to interact with your system. Shells might seem very easy to understand but have very specific and defined behavour in almost every single case, most of which will need to be handled properly.
 ## Shell in a nutshell
 When you start a terminal (such as the GNOME Terminal or Konsole on Linux or iTerm2 on macOS) running the Bash shell, you're greeted with a prompt. A prompt is a symbol, usually a dollar sign ($), indicating that the shell is waiting for your input. Of course, knowing what you're supposed to type is another matter entirely. 
