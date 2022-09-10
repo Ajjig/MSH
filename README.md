@@ -15,7 +15,7 @@ sudo apt install lib32readline8 lib32readline-dev libreadline-dev
 ```
 or
 ```Bash
-cd minishell/path/ && make rl
+> cd minishell/path/ && make rl
 ```
 
 # Running
