@@ -22,11 +22,11 @@ cd minishell/path/ && make rl
 ### MacOS
 After installing readline you can compile & run *minishell* with the following command
 ```Bash
-git clone git@github.com:Ajjig/MSH.git && cd MSH && Make && ./minishell
+> git clone git@github.com:Ajjig/MSH.git && cd MSH && Make && ./minishell
 ```
 ### Linux
 after successfully installaling readline
 then you can compile the srcs with the following command
 ```Bash
-make linux
+> make linux
 ```
