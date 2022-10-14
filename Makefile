@@ -1,8 +1,7 @@
 NAME = minishell
 LIBFT = LIBFT/libft.a
 INC = minishell.h
-CFLAGS = -Wall -Wextra -Werror
-CFLAGS += -I./
+CFLAGS = -Wall -Wextra -Werror -g -lreadline
 RM = rm -rf
 CC = cc
 
@@ -15,27 +14,21 @@ FILES = $(addprefix src/, $(CFILES))
 
 OBJS = $(FILES:.c=.o)
 
-all:
-	-@/bin/bash installer.sh
+all: $(NAME)
+	
 
 $(NAME): $(OBJS) $(LIBFT)
-	@$(CC)  $(OBJS) $(LIBFT) -L$(shell brew --prefix readline)/lib -lreadline -o $(NAME)
+	@$(CC)  $(OBJS) $(LIBFT) $(CFLAGS)  -o $(NAME)
 	@echo "minishell created"
 
 $(LIBFT):
-	@make bonus -C LIBFT/
+	@make -C LIBFT/
 
-%.o:%.c $(INC)
-	@$(CC) $(CFLAGS) -I$(shell brew --prefix readline)/include -c $< -o $@ -I $(INC)
+%.o:%.c 
+	@$(CC) $(CFLAGS) -c $< -o $@
 	@echo "compiling minishell ..."
 
-rl:
-	@echo "INSTALLING READLINE"
-	@sudo apt install lib32readline8 lib32readline-dev libreadline-dev
-	@echo "READLINE INSTALLED SUCCESSFULLY"
 
-linux: $(LIBFT)
-	$(CC) $(CFLAGS) $(FILES) $(LIBFT) -L/usr/local/lib -I/usr/local/include -lreadline -o $(NAME)
 
 clean:
 	@$(RM) $(OBJS)
