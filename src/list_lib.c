@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_lib.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tel-mouh <tel-mouh@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 21:14:37 by majjig            #+#    #+#             */
-/*   Updated: 2022/03/25 21:14:51 by majjig           ###   ########.fr       */
+/*   Updated: 2022/10/14 22:35:35 by tel-mouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ t_envlist	*ft_lstnew(char *s)
 	if (!(new))
 		return (0);
 	new->var_name = ft_strdup(out[0]);
-	new->var_content = ft_strdup(out[1]);
+	if (out[1])
+		new->var_content = ft_strdup(out[1]);
 	new->stock = s;
 	new->next = NULL;
 	free(out[0]);

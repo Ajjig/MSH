@@ -3,28 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajjig <ajjig@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tel-mouh <tel-mouh@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 01:38:16 by majjig            #+#    #+#             */
-/*   Updated: 2022/06/20 21:30:26 by ajjig            ###   ########.fr       */
+/*   Updated: 2022/10/14 22:24:29 by tel-mouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
 
 /*  INClUDES  */
 
-# include "./LIBFT/libft.h"
+
+# include "../LIBFT/libft.h"
 
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
 # include <signal.h>
-# include <readline/history.h>
 # include <unistd.h>
 # include <stdbool.h>
-# include <readline/readline.h>
 # include <string.h>
 # include <sys/wait.h>
 
@@ -94,6 +91,9 @@ typedef struct s_envlist // linked lst
 
 /*  PROTOTYPES  */
 
+
+#include <readline/readline.h>
+#include <readline/history.h>
 t_command	*get_cammand(char **buff, int i, int tmp, t_envlist *lst);
 t_command	*init_cmd(char **buff);
 void		free_cmd(t_command *command);
@@ -130,4 +130,3 @@ bool		is_redirection(char *str);
 char		*strjoin_free(char *s1, char *s2);
 void		free_lst(t_envlist *lst);
 
-#endif

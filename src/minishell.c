@@ -3,14 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajjig <ajjig@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tel-mouh <tel-mouh@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 01:14:03 by iidkhebb          #+#    #+#             */
-/*   Updated: 2022/06/20 21:24:48 by ajjig            ###   ########.fr       */
+/*   Updated: 2022/10/14 22:29:57 by tel-mouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+
+#include <readline/readline.h>
+#include <readline/history.h>
 
 t_command	*get_next_cmd(t_envlist *lst)
 {
@@ -93,8 +97,7 @@ int	main(int ac, char **av, char **envp)
 	t_command	*command;
 	t_envlist	*lst;
 
-	av += 0;
-	ac += 0;
+	(void)av,(void)ac;
 	lst = __env__init(envp);
 	signal_handler();
 	while (true)

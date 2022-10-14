@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: iidkhebb <iidkhebb@student.42.fr>          +#+  +:+       +#+         #
+#    By: tel-mouh <tel-mouh@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/10 15:31:37 by majjig            #+#    #+#              #
-#    Updated: 2022/03/24 01:19:07 by iidkhebb         ###   ########.fr        #
+#    Updated: 2022/10/14 22:20:48 by tel-mouh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,19 +54,23 @@ OBJSBNS = ${BNS:.c=.o}
 
 CC = gcc
 
-CFLAGS = -c -Wall -Wextra -Werror
+CFLAGS = -c -Wall -Wextra -Werror -g
 
 NAME = libft.a
 
 bonus: $(NAME)
 
+
+all : $(NAME)
+
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(SRCS) $(BNS)
 	@ar rc $(NAME) $(OBJS)
-	clear
-lib:
-	@ar rc $(NAME) $(OBJS)
-	clear
+
+%.o : %.c
+	$(CC) $(CFLAGS) -c $<
+# lib:
+# 	@ar rc $(NAME) $(OBJS)
+# 	clear
 
 clean:
 	@rm -f $(OBJS)
