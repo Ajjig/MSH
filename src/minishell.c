@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tel-mouh <tel-mouh@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ajjig <ajjig@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 01:14:03 by iidkhebb          #+#    #+#             */
-/*   Updated: 2022/10/14 22:29:57 by tel-mouh         ###   ########.fr       */
+/*   Updated: 2022/10/21 18:29:21 by ajjig            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ t_command	*get_next_cmd(t_envlist *lst)
 		return (NULL);
 	if (!buff || buff[0] == NULL)
 		return (NULL);
-	return (free(read), command = get_cammand(buff, -1, 0, lst), command);
+	free(read);
+	return (command = get_cammand(buff, -1, 0, lst), command);
 }
 
 void	free_cmd(t_command *command)
