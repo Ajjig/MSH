@@ -3,13 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tel-mouh <tel-mouh@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ajjig <ajjig@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 01:38:16 by majjig            #+#    #+#             */
-/*   Updated: 2022/10/14 22:24:29 by tel-mouh         ###   ########.fr       */
+/*   Updated: 2022/10/21 18:23:57 by ajjig            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef MINISHELL_H
+# define MINISHELL_H
 
 /*  INClUDES  */
 
@@ -130,3 +132,4 @@ bool		is_redirection(char *str);
 char		*strjoin_free(char *s1, char *s2);
 void		free_lst(t_envlist *lst);
 
+#endif
